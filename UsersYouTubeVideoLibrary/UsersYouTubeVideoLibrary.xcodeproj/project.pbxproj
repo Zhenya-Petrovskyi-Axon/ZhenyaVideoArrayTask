@@ -58,7 +58,6 @@
 		45841F7826398E48007A40D4 /* UsersYouTubeVideoLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				45841F9A2639909E007A40D4 /* New Group */,
 				45841F9726399064007A40D4 /* MainViewModule */,
 				45841F962639903E007A40D4 /* Storyboards */,
 				45841F952639902D007A40D4 /* MainAppDelegates */,
@@ -93,13 +92,6 @@
 				45841F7D26398E48007A40D4 /* MainVC.swift */,
 			);
 			path = MainViewModule;
-			sourceTree = "<group>";
-		};
-		45841F9A2639909E007A40D4 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
