@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VideoButton" translatesAutoresizingMaskIntoConstraints="NO" id="CBB-x7-2hE">
-                                <rect key="frame" x="3" y="244" width="408" height="408"/>
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="CBB-x7-2hE" secondAttribute="height" multiplier="1:1" id="CLP-0j-8Qe"/>
+                                    <constraint firstAttribute="height" constant="200" id="z2n-bE-War"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CBB-x7-2hE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="7Rf-HB-T35"/>
                             <constraint firstItem="CBB-x7-2hE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="IEY-WG-uWA"/>
                             <constraint firstItem="CBB-x7-2hE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="OWi-ab-5yj"/>
                         </constraints>
