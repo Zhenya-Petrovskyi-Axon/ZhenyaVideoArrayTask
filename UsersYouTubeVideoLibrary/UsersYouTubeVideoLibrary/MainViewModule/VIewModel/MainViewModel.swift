@@ -38,4 +38,10 @@ class MainViewModel: MainViewModelProtocol {
         print("Succes in saving url: \(link)")
     }
     
+    // MARK: - Setup displayable cell
+        func viewModelForCell(_ indexPath: IndexPath) -> VideoCollectionViewModel {
+            let video = links[indexPath.row].url
+            return VideoCollectionViewModel(cellModel: CellModel(videoLink: video))
+        }
+    
 }

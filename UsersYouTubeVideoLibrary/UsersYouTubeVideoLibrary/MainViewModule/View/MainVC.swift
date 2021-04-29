@@ -57,7 +57,7 @@ extension MainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
-        cell.videoLinkCellLabel.text = mainViewModel.links[indexPath.row].url
+        cell.viewModel = mainViewModel.viewModelForCell(indexPath)
         return cell
     }
     
