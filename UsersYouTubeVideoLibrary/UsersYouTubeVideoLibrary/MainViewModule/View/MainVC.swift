@@ -8,7 +8,7 @@
 import UIKit
 
 class MainVC: UIViewController {
-
+    
     @IBOutlet weak var videoTableView: UITableView!
     
     var mainViewModel = MainViewModel()
@@ -30,63 +30,44 @@ class MainVC: UIViewController {
     // MARK: - Bindings
     func setupBindings() {
         self.mainViewModel.didGetLinks = { [weak self] in
-                self?.updateDataSource()
-            }
+            self?.updateDataSource()
         }
+    }
     
     // MARK: - Update Data Source
-        func updateDataSource() {
-            DispatchQueue.main.async { [weak self] in
-                self?.videoTableView.reloadData()
-            }
+    func updateDataSource() {
+        DispatchQueue.main.async { [weak self] in
+            self?.videoTableView.reloadData()
         }
+    }
     
     // MARK: - Show save allert
     func showInputPopup() {
         let alert = UIAlertController(title: "Upiii", message: "Wanna add a video link?", preferredStyle: .alert)
-
+        
         let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
-
-          guard let textField = alert.textFields?.first,
-            let linkToSave = textField.text else {
-              return
-          }
-
+            
+            guard let textField = alert.textFields?.first,
+                  let linkToSave = textField.text else {
+                return
+            }
+            
             self.mainViewModel.saveLink(link: linkToSave)
         }
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         alert.addTextField()
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
-
+        
         present(alert, animated: true)
     }
-
+    
     // MARK: - Call Pop-up
     @IBAction func addLinkBarButtonAction(_ sender: Any) {
         showInputPopup()
-      }
-
-//      func save(name: String) {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//          return
-//        }
-//
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        let entity = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)!
-//        let person = NSManagedObject(entity: entity, insertInto: managedContext)
-//        person.setValue(name, forKeyPath: "name")
-//
-//        do {
-//          try managedContext.save()
-//          people.append(person)
-//        } catch let error as NSError {
-//          print("Could not save. \(error), \(error.userInfo)")
-//        }
-//      }
-//    }
+    }
     
 }
 
