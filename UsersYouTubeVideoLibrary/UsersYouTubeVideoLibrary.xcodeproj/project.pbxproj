@@ -17,6 +17,7 @@
 		45841F8426398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 45841F8226398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld */; };
 		45841F8626398E49007A40D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45841F8526398E49007A40D4 /* Assets.xcassets */; };
 		45841F8926398E49007A40D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45841F8726398E49007A40D4 /* LaunchScreen.storyboard */; };
+		458EB255263B26A300768093 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB254263B26A300768093 /* CellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		45841F8526398E49007A40D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45841F8826398E49007A40D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45841F8A26398E49007A40D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		458EB254263B26A300768093 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				453F3AF7263AB5A500648611 /* Model */,
-				45841FA426399765007A40D4 /* Cells */,
+				45841FA426399765007A40D4 /* Cell */,
 				45841F9726399064007A40D4 /* MainViewModule */,
 				45841F962639903E007A40D4 /* Storyboards */,
 				45841F952639902D007A40D4 /* MainAppDelegates */,
@@ -127,12 +129,13 @@
 			path = MainViewModule;
 			sourceTree = "<group>";
 		};
-		45841FA426399765007A40D4 /* Cells */ = {
+		45841FA426399765007A40D4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				45449FA4263AA63D00F1F2A6 /* VideoTableViewCell.swift */,
+				458EB254263B26A300768093 /* CellViewModel.swift */,
 			);
-			path = Cells;
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +210,7 @@
 			files = (
 				45841F8426398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld in Sources */,
 				45841F7E26398E48007A40D4 /* MainVC.swift in Sources */,
+				458EB255263B26A300768093 /* CellViewModel.swift in Sources */,
 				453F3B00263AC74600648611 /* LinkModel.swift in Sources */,
 				45841F7A26398E48007A40D4 /* AppDelegate.swift in Sources */,
 				45841F7C26398E48007A40D4 /* SceneDelegate.swift in Sources */,

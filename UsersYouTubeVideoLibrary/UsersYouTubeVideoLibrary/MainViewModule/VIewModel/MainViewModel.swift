@@ -39,9 +39,9 @@ class MainViewModel: MainViewModelProtocol {
     }
     
     // MARK: - Setup displayable cell
-        func viewModelForCell(_ indexPath: IndexPath) -> VideoCollectionViewModel {
+        func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
             let video = links[indexPath.row].url
-            return VideoCollectionViewModel(cellModel: CellModel(videoLink: video))
+            return CellViewModel(cellModel: CellModel(videoLink: video))
         }
     
 }

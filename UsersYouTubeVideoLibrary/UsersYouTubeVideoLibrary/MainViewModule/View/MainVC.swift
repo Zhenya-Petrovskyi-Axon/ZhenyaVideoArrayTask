@@ -21,11 +21,13 @@ class MainVC: UIViewController {
         
     }
     
+    // MARK: - Setup tableView delegates
     func setupDelegates() {
         videoTableView.delegate = self
         videoTableView.dataSource = self
     }
     
+    // MARK: - Bindings
     func setupBindings() {
         self.mainViewModel.didGetLinks = { [weak self] in
                 self?.updateDataSource()
@@ -39,13 +41,14 @@ class MainVC: UIViewController {
             }
         }
 
-    // MARK: -
+    // MARK: - Call Pop-up
     @IBAction func addLinkBarButtonAction(_ sender: Any) {
         mainViewModel.saveLink(link: "Hello World")
     }
     
 }
 
+// MARK: Table View Delegates & Protocols
 extension MainVC: UITableViewDelegate {
     
 }
