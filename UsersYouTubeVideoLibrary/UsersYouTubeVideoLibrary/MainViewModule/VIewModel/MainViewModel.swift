@@ -7,16 +7,6 @@
 
 import Foundation
 
-// MARK: - Link
-struct Link {
-    let link: String?
-}
-
-// MARK: - Link Data
-struct LinkData {
-    var result: [Link]?
-}
-
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
 //    func setLinks()
@@ -25,30 +15,26 @@ protocol MainViewModelProtocol {
 
 class MainViewModel: MainViewModelProtocol {
     
-    private(set) var linkData : LinkData? {
+    private(set) var links: [Link] = [] {
         didSet {
             self.didGetLinks()
         }
     }
     
     public var linksCount: Int {
-        return linkData?.result?.count ?? 0
+        return links.count
     }
     
-    init() {
-        self.setLinks()
-    }
+    init() { }
     
     // MARK: - Bind data
     var didGetLinks: (() -> Void) = { }
-    
     
     func setLinks() {
     }
     
     func saveLink(link: String) {
-        linkData?.result?.append(Link(link: link))
-        print(linkData?.result)
+        links.append(Link(link: link))
     }
     
 }

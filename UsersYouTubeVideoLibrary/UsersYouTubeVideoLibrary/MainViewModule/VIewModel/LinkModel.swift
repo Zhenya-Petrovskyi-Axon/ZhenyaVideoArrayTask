@@ -7,13 +7,9 @@
 
 import Foundation
 
-//// MARK: - Link
-//struct Link {
-//    let link: String?
-//}
-//
-//// MARK: - Link Data
-//struct LinkData {
-//    var linkData: [Link]?
-//}
+// MARK: - Link
+struct Link {
+    let link: String
+}
+
 
