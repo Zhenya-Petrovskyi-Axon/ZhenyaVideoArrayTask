@@ -34,7 +34,8 @@ class MainViewModel: MainViewModelProtocol {
     }
     
     func saveLink(link: String) {
-        links.append(Link(link: link))
+        links.append(Link(url: link))
+        print("Succes in saving url: \(link)")
     }
     
 }

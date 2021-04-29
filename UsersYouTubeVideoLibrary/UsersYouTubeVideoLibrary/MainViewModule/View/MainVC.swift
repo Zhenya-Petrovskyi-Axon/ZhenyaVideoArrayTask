@@ -39,9 +39,9 @@ class MainVC: UIViewController {
             }
         }
 
+    // MARK: -
     @IBAction func addLinkBarButtonAction(_ sender: Any) {
         mainViewModel.saveLink(link: "Hello World")
-        print(mainViewModel.links)
     }
     
 }
@@ -57,7 +57,7 @@ extension MainVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
-        cell.videoLinkCellLabel.text = mainViewModel.links[indexPath.row].link
+        cell.videoLinkCellLabel.text = mainViewModel.links[indexPath.row].url
         return cell
     }
     

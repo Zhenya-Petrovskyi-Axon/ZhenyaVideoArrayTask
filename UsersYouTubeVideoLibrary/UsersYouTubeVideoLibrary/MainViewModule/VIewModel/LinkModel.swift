@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Link
 struct Link {
-    let link: String
+    let url: String
 }
 
 
