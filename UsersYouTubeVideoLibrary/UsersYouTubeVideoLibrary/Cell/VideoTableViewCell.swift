@@ -11,15 +11,24 @@ class VideoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var videoLinkCellLabel: UILabel!
     
-    @IBOutlet weak var videoLinkCellImage: UIImageView!
+    private var cellDescriptionHead = "URL:"
     
     var viewModel: CellViewModel! {
         didSet {
-            videoLinkCellLabel.text = viewModel.cellModel.videoLink
+            videoLinkCellLabel.text = cellDescriptionHead + " " + viewModel.cellModel.videoLink
         }
     }
     
+    private lazy var setupOnce: Void = {
+        videoLinkCellLabel.textColor = .blue
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 15
+        contentView.layer.borderWidth = 0.3
+        contentView.layer.borderColor = UIColor.black.cgColor
+    }()
+    
     override func layoutSubviews() {
+        _ = setupOnce
     }
     
     override func awakeFromNib() {

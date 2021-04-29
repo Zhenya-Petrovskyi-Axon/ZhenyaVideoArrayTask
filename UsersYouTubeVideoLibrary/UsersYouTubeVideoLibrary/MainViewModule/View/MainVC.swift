@@ -43,7 +43,7 @@ class MainVC: UIViewController {
 
     // MARK: - Call Pop-up
     @IBAction func addLinkBarButtonAction(_ sender: Any) {
-        mainViewModel.saveLink(link: "Hello World")
+        mainViewModel.saveLink(link: "https://www.youtube.com/watch?v=Ddz-7c_an0Y")
     }
     
 }

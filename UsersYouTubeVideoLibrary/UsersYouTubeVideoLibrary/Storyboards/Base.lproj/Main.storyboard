@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="as7-jE-HDq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="as7-jE-HDq">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,40 +18,29 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VideoCell" rowHeight="130" id="0wC-6O-qd5" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="130"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0wC-6O-qd5" id="wWA-zE-wB1" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="130"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmj-fM-G4e" id="6h6-uy-jQf">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dFh-7E-XGC">
-                                                    <rect key="frame" x="35" y="17" width="100" height="96"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="100" id="T3N-oa-5cx"/>
-                                                        <constraint firstAttribute="width" secondItem="dFh-7E-XGC" secondAttribute="height" multiplier="1:1" id="gNM-gD-pb6"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HpH-Oz-Kvo">
-                                                    <rect key="frame" x="150" y="53" width="229" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
+                                                    <rect key="frame" x="40" y="11.5" width="339" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="HpH-Oz-Kvo" firstAttribute="leading" secondItem="dFh-7E-XGC" secondAttribute="trailing" constant="15" id="5P7-Dz-2n1"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="HpH-Oz-Kvo" secondAttribute="trailing" constant="15" id="ZfH-Yq-hwI"/>
-                                                <constraint firstItem="dFh-7E-XGC" firstAttribute="centerY" secondItem="wWA-zE-wB1" secondAttribute="centerY" id="ctx-pI-YLO"/>
-                                                <constraint firstItem="HpH-Oz-Kvo" firstAttribute="centerY" secondItem="wWA-zE-wB1" secondAttribute="centerY" id="mFD-QL-N4C"/>
-                                                <constraint firstItem="dFh-7E-XGC" firstAttribute="leading" secondItem="wWA-zE-wB1" secondAttribute="leadingMargin" constant="15" id="pL3-YE-tFc"/>
+                                                <constraint firstItem="soi-6M-yZG" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="FvT-1t-auJ"/>
+                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="6h6-uy-jQf" secondAttribute="leadingMargin" constant="20" id="UtJ-a7-atO"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="soi-6M-yZG" secondAttribute="trailing" constant="15" id="mLL-ef-Dbx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="videoLinkCellImage" destination="dFh-7E-XGC" id="Kmj-N6-pgG"/>
-                                            <outlet property="videoLinkCellLabel" destination="HpH-Oz-Kvo" id="tDR-Fp-Efj"/>
+                                            <outlet property="videoLinkCellLabel" destination="soi-6M-yZG" id="6IG-wn-I6t"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -102,7 +91,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="video" catalog="system" width="128" height="83"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

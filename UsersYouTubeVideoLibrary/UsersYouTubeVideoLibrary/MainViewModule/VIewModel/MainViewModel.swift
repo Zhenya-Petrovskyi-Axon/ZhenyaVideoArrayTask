@@ -9,10 +9,10 @@ import Foundation
 
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
-//    func setLinks()
     func saveLink(link: String)
 }
 
+// MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
     private(set) var links: [Link] = [] {
@@ -21,27 +21,26 @@ class MainViewModel: MainViewModelProtocol {
         }
     }
     
+    // MARK: - Array capacity counter
     public var linksCount: Int {
         return links.count
     }
     
-    init() { }
+    init() {  }
     
     // MARK: - Bind data
     var didGetLinks: (() -> Void) = { }
     
-    func setLinks() {
-    }
-    
+    // MARK: - Used to
     func saveLink(link: String) {
         links.append(Link(url: link))
         print("Succes in saving url: \(link)")
     }
     
-    // MARK: - Setup displayable cell
-        func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
-            let video = links[indexPath.row].url
-            return CellViewModel(cellModel: CellModel(videoLink: video))
-        }
+    // MARK: - Bind to set-up Cell
+    func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
+        let video = links[indexPath.row].url
+        return CellViewModel(cellModel: CellModel(videoLink: video))
+    }
     
 }

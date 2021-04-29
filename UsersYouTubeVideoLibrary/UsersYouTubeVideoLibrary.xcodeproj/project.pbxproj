@@ -51,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				453F3AF1263AB1CE00648611 /* MainViewModel.swift */,
-				453F3AFF263AC74600648611 /* LinkModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -67,6 +66,8 @@
 		453F3AF7263AB5A500648611 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				453F3AFF263AC74600648611 /* LinkModel.swift */,
+				458EB254263B26A300768093 /* CellViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -90,6 +91,7 @@
 		45841F7826398E48007A40D4 /* UsersYouTubeVideoLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				458EB256263B307700768093 /* Popups */,
 				453F3AF7263AB5A500648611 /* Model */,
 				45841FA426399765007A40D4 /* Cell */,
 				45841F9726399064007A40D4 /* MainViewModule */,
@@ -133,9 +135,15 @@
 			isa = PBXGroup;
 			children = (
 				45449FA4263AA63D00F1F2A6 /* VideoTableViewCell.swift */,
-				458EB254263B26A300768093 /* CellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		458EB256263B307700768093 /* Popups */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Popups;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
