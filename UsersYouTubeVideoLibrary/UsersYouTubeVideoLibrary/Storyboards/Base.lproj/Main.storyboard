@@ -16,30 +16,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
+                                <rect key="frame" x="8" y="88" width="398" height="774"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="45" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="398" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmj-fM-G4e" id="6h6-uy-jQf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH7-Ga-lOO">
+                                                    <rect key="frame" x="8" y="12" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="42" placeholder="YES" id="HzK-E0-9be"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
-                                                    <rect key="frame" x="40" y="11.5" width="339" height="20.5"/>
+                                                    <rect key="frame" x="58" y="12.5" width="305" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="sH7-Ga-lOO" secondAttribute="trailing" constant="8" id="E1e-cZ-z7v"/>
                                                 <constraint firstItem="soi-6M-yZG" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="FvT-1t-auJ"/>
-                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="6h6-uy-jQf" secondAttribute="leadingMargin" constant="20" id="UtJ-a7-atO"/>
+                                                <constraint firstItem="sH7-Ga-lOO" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="S6r-Ob-nA6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="soi-6M-yZG" secondAttribute="trailing" constant="15" id="mLL-ef-Dbx"/>
+                                                <constraint firstItem="sH7-Ga-lOO" firstAttribute="leading" secondItem="6h6-uy-jQf" secondAttribute="leading" constant="8" id="zWi-PH-rDS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="videoLinkCellDesriptionLabel" destination="sH7-Ga-lOO" id="sdd-Pr-4fW"/>
                                             <outlet property="videoLinkCellLabel" destination="soi-6M-yZG" id="6IG-wn-I6t"/>
                                         </connections>
                                     </tableViewCell>
@@ -49,8 +61,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3NV-Mg-Gfk" secondAttribute="trailing" id="9r5-ze-q2m"/>
-                            <constraint firstItem="3NV-Mg-Gfk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AOP-f0-1ms"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3NV-Mg-Gfk" secondAttribute="trailing" constant="8" id="9r5-ze-q2m"/>
+                            <constraint firstItem="3NV-Mg-Gfk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="AOP-f0-1ms"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="3NV-Mg-Gfk" secondAttribute="bottom" id="O3X-Rj-NB9"/>
                             <constraint firstItem="3NV-Mg-Gfk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="V9o-uW-XT3"/>
                         </constraints>
