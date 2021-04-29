@@ -14,7 +14,7 @@ protocol MainViewModelProtocol {
 
 class MainViewModel: MainViewModelProtocol {
     
-    var links: [String] = []
+    var videoLinks: [String] = []
     
     func setLinks() {
         
