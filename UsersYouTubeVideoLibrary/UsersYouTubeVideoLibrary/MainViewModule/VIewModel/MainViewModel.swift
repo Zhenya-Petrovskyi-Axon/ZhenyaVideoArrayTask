@@ -16,7 +16,7 @@ protocol MainViewModelProtocol {
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
-    private var url: [NSManagedObject] = []
+//    private var url: [NSManagedObject] = []
     
     private(set) var links: [Link] = [] {
         didSet {
