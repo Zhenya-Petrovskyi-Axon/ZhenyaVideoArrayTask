@@ -12,6 +12,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoLinkCellLabel: UILabel!
     
     @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
+    
     private var cellDescriptionHead = "URL:"
     
     var viewModel: CellViewModel! {
@@ -33,9 +34,4 @@ class VideoTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         _ = setupOnce
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
 }
