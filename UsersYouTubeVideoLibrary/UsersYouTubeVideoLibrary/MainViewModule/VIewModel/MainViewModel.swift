@@ -11,6 +11,7 @@ import CoreData
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
     func saveLink(link: String)
+    func getLinksFromCoreData()
 }
 
 // MARK: - MainVC Model
@@ -34,6 +35,10 @@ class MainViewModel: MainViewModelProtocol {
     // MARK: - Bind data
     var didGetLinks: (() -> Void) = { }
     
+    // MARK: - Saved url's from core data
+    func getLinksFromCoreData() {
+//        links += urlCoreDataArray
+    }
     // MARK: - Used to
     func saveLink(link: String) {
         links.append(Link(url: link))
@@ -48,7 +53,7 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Save link to core data
     func saveToCoreData(url: String) {
-        guard let appDelegate = UIApplicationDelegate.self as? AppDelegate else {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
         
