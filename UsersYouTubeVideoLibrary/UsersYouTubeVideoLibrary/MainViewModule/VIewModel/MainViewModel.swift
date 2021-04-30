@@ -51,12 +51,12 @@ class MainViewModel: MainViewModelProtocol {
 //        guard let appDelegate = UIApplicationDelegate as? AppDelegate else {
 //            return
 //        }
-//        
+//
 //        let managedContext = appDelegate.persistentContainer.viewContext
 //        let entity = NSEntityDescription.entity(forEntityName: "URL", in: managedContext)!
 //        let url = NSManagedObject(entity: entity, insertInto: managedContext)
 //        url.setValue(link, forKeyPath: "url")
-//        
+//
 //        do {
 //            try managedContext.save()
 //            url.append(url)
