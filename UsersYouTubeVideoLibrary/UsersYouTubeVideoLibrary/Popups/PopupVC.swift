@@ -8,24 +8,27 @@
 import UIKit
 
 class PopupVC: UIViewController {
-
+    
     @IBOutlet weak var mainPopupView: UIView!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
+    
+    let regEx = "http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-
+        
     }
     
     // MARK: - Setup view
     func setupView() {
         
-        // MARK: - 3D effect
+        // MARK: - 3D effect for popup view
         self.mainPopupView.layer.shadowRadius = 5
         self.mainPopupView.layer.shadowColor = UIColor.black.cgColor
-        self.mainPopupView.layer.shadowOpacity = 1
+        self.mainPopupView.layer.shadowOpacity = 0.6
         self.mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
         
         // MARK: - Basic setup of view
@@ -35,14 +38,22 @@ class PopupVC: UIViewController {
         self.mainPopupView.layer.borderWidth = 1
         self.mainPopupView.layer.borderColor = UIColor.white.cgColor
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         
         // MARK: - Text fields setup
-        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.masksToBounds = true }
-        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.cornerRadius = 10 }
-        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.borderWidth = 0.3 }
-        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor }
-         
+        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.masksToBounds = true
+            $0?.layer.cornerRadius = 10
+            $0?.layer.borderWidth = 0.3
+            $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        }
+        
+        // MARK: - Tap on screen to dissmiss popup
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+    }
+    
+    // MARK: - URL Validation
+    func urlValidation(url: String?) -> Bool {
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        return predicate.evaluate(with: url)
     }
     
     // MARK: - Dissmiss pop-up with tap on screen
@@ -52,5 +63,21 @@ class PopupVC: UIViewController {
     
     // MARK: - Check & save data
     @IBAction func saveButtonAction(_ sender: UIButton) {
+        
+        guard urlTextField.text != "" else {
+            print("Url field is empty")
+            return}
+        
+        let url = urlTextField.text
+        
+        let isValid = urlValidation(url: url)
+        
+        if isValid {
+            // do stuff
+            print("Url Is Valid")
+        } else {
+            // show allert
+            print("Url is not valid")
+        }
     }
 }
