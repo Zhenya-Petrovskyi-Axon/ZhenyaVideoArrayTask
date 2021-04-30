@@ -18,6 +18,7 @@
 		45841F8626398E49007A40D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45841F8526398E49007A40D4 /* Assets.xcassets */; };
 		45841F8926398E49007A40D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45841F8726398E49007A40D4 /* LaunchScreen.storyboard */; };
 		458EB255263B26A300768093 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB254263B26A300768093 /* CellViewModel.swift */; };
+		458EB258263C0AA600768093 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB257263C0AA600768093 /* PopupVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		45841F8826398E49007A40D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45841F8A26398E49007A40D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458EB254263B26A300768093 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		458EB257263C0AA600768093 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		458EB256263B307700768093 /* Popups */ = {
 			isa = PBXGroup;
 			children = (
+				458EB257263C0AA600768093 /* PopupVC.swift */,
 			);
 			path = Popups;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				453F3B00263AC74600648611 /* LinkModel.swift in Sources */,
 				45841F7A26398E48007A40D4 /* AppDelegate.swift in Sources */,
 				45841F7C26398E48007A40D4 /* SceneDelegate.swift in Sources */,
+				458EB258263C0AA600768093 /* PopupVC.swift in Sources */,
 				45449FA5263AA63D00F1F2A6 /* VideoTableViewCell.swift in Sources */,
 				453F3AF2263AB1CE00648611 /* MainViewModel.swift in Sources */,
 			);
