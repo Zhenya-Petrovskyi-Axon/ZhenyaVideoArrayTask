@@ -37,8 +37,9 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Saved url's from core data
     func getLinksFromCoreData() {
-//        links += urlCoreDataArray
+        //        links += urlCoreDataArray
     }
+    
     // MARK: - Used to
     func saveLink(link: String) {
         links.append(Link(url: link))
