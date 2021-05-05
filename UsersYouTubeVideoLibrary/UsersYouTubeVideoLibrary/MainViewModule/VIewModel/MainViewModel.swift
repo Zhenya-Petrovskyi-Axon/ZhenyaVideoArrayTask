@@ -30,7 +30,7 @@ class MainViewModel: MainViewModelProtocol {
         return links.count
     }
     
-    init() {  }
+    init() { }
     
     // MARK: - Bind data
     var didGetLinks: (() -> Void) = { }
@@ -44,6 +44,7 @@ class MainViewModel: MainViewModelProtocol {
     func saveLink(link: String) {
         links.append(Link(url: link))
         print("Succes in saving url: \(link)")
+        print("\(links)")
     }
     
     // MARK: - Bind to set-up Cell

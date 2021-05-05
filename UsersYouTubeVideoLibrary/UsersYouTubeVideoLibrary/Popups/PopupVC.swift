@@ -13,7 +13,9 @@ class PopupVC: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private let regEx = "http?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?"
+    private let mainViewModel = MainViewModel()
+    
+    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +54,7 @@ class PopupVC: UIViewController {
     
     // MARK: - URL Validation
     func urlValidation(url: String?) -> Bool {
-        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
     }
     
@@ -66,14 +68,15 @@ class PopupVC: UIViewController {
         
         guard urlTextField.text != "" else {
             print("Url field is empty")
-            return}
+            return
+        }
         
         let url = urlTextField.text
         
         let isValid = urlValidation(url: url)
         
         if isValid {
-            // do stuff
+            mainViewModel.saveLink(link: "https://www.youtube.com/watch?v=eQiGAuNQkHU" )
             print("Url Is Valid")
         } else {
             // show allert
