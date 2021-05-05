@@ -8,10 +8,17 @@
 import UIKit
 import CoreData
 
+// Mark: - Core data link service protocol
+protocol LinkDataServiceProtocol {
+    func saveLink(link: String)
+    func getLinks(completion: (([Link]) -> Void))
+    func removeLink(id: String)
+}
+
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
-    func saveLink(link: String)
-    func getLinksFromCoreData()
+//    func saveLink(link: String)
+//    func getLinksFromCoreData()
 }
 
 // MARK: - MainVC Model
@@ -34,18 +41,6 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Bind data
     var didGetLinks: (() -> Void) = { }
-    
-    // MARK: - Saved url's from core data
-    func getLinksFromCoreData() {
-        //        links += urlCoreDataArray
-    }
-    
-    // MARK: - Used to
-    func saveLink(link: String) {
-        links.append(Link(url: link))
-        print("Succes in saving url: \(link)")
-        print("\(links)")
-    }
     
     // MARK: - Bind to set-up Cell
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
