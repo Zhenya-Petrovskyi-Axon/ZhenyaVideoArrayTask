@@ -13,9 +13,7 @@ class PopupVC: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private let mainViewModel = MainViewModel()
-    
-    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
+    let popViewModel = PopupViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +50,9 @@ class PopupVC: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
-    // MARK: - URL Validation
-    func urlValidation(url: String?) -> Bool {
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
-        return predicate.evaluate(with: url)
-    }
-    
     // MARK: - Dissmiss pop-up with tap on screen
     @objc func dismissView(){
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Check & save data
@@ -74,11 +66,10 @@ class PopupVC: UIViewController {
         let url = urlTextField.text ?? "Some Link"
         let title = titleTextField.text ?? "Some Title"
         
-        let isValid = urlValidation(url: url)
-        
-        if isValid {
+        if popViewModel.isUrlValid(url: url) == true {
             
-            mainViewModel.service.saveLink(urlString: url, title: title )
+            popViewModel.saveLink(urlString: url, title: title)
+            
             self.dismiss(animated: false, completion: nil)
             print("Url Is Valid")
             

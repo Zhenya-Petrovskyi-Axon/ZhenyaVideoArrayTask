@@ -62,9 +62,11 @@ extension MainVC: UITableViewDelegate {
         
         if editingStyle == .delete {
             videoTableView.beginUpdates()
+            
             mainViewModel.service.removeLink(id: mainViewModel.links[indexPath.row].id)
             mainViewModel.links.remove(at: indexPath.row)
             videoTableView.deleteRows(at: [indexPath], with: .fade)
+            
             videoTableView.endUpdates()
         }
     }
