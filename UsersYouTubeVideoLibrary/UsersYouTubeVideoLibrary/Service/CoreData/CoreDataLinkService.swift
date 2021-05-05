@@ -46,10 +46,8 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         
         do {
             let result = try context.fetch(fetchRequest) as? [Link] ?? []
-            
-            completion(result)
-            
             print(result)
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
