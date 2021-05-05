@@ -13,11 +13,20 @@ class MainVC: UIViewController {
     
     let mainViewModel = MainViewModel()
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        setupBindings()
+//    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("MainVC view will appear")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBindings()
         setupDelegates()
+        print("MainVC View Did Load")
         
     }
     
@@ -27,7 +36,7 @@ class MainVC: UIViewController {
         videoTableView.dataSource = self
     }
     
-    // MARK: - Bindings
+    // MARK: - Binding with MainViewModel
     func setupBindings() {
         self.mainViewModel.didGetLinks = { [weak self] in
             self?.updateDataSource()
@@ -44,9 +53,9 @@ class MainVC: UIViewController {
     @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PopupVC") as! PopupVC
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
+        self.present(vc, animated: true, completion: nil)
     }
     
 }

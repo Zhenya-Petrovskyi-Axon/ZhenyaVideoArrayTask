@@ -8,6 +8,11 @@
 import UIKit
 import CoreData
 
+protocol PopupViewModelProtocol {
+    func saveLink(urlString: String, title: String)
+    func isUrlValid(url: String?) -> Bool
+}
+
 class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
@@ -20,8 +25,10 @@ class PopupViewModel {
         let context = appDelegate.persistentContainer.viewContext
         
         service = CoreDataLinkService(context: context)
+        
     }
     
+    // MARK: - Save link to core data
     func saveLink(urlString: String, title: String) {
         service.saveLink(urlString: urlString, title: urlString)
     }
