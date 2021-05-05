@@ -45,7 +45,6 @@ class MainViewModel: MainViewModelProtocol {
         service = CoreDataLinkService(context: context)
         service.getLinks { links in
             self.links = links
-            
         }
     }
     

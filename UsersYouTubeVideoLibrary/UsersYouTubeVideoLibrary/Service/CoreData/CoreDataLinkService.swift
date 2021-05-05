@@ -12,17 +12,16 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
     
+    private let appDelegate =
+        UIApplication.shared.delegate as? AppDelegate
+    
     init(context: NSManagedObjectContext) {
         self.context = context
     }
     
     // MARK: - Save link to core data
     func saveLink(urlString: String, title: String) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
         
-        let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "LinkCoreData", in: context)!
         let url = NSManagedObject(entity: entity, insertInto: context)
         
@@ -42,7 +41,20 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     
     func getLinks(completion: (([Link]) -> Void)) {
         
+        let fetchRequest =
+            NSFetchRequest<NSManagedObject>(entityName: "LinkCoreData")
+        
+        do {
+            let result = try context.fetch(fetchRequest) as? [Link] ?? []
+            
+            completion(result)
+            
+            print(result)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
     }
+    
     
     func removeLink(id: String) {
         
