@@ -77,6 +77,7 @@ class PopupVC: UIViewController {
         
         if isValid {
 //            mainViewModel.saveLink(link: "https://www.youtube.com/watch?v=eQiGAuNQkHU")
+            mainViewModel.service.saveLink(link: "Some link have been saved")
             self.dismiss(animated: false, completion: nil)
             print("Url Is Valid")
         } else {

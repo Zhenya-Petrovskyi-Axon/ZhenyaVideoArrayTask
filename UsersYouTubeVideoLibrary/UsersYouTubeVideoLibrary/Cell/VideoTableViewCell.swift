@@ -17,7 +17,7 @@ class VideoTableViewCell: UITableViewCell {
     
     var viewModel: CellViewModel! {
         didSet {
-            videoLinkCellLabel.text = viewModel.cellModel.videoLink
+            videoLinkCellLabel.text = viewModel.cellModel.urlString
             videoLinkCellDesriptionLabel.text = cellDescriptionHead
         }
     }

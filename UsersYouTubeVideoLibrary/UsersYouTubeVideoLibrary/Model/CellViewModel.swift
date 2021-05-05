@@ -8,7 +8,7 @@
 import Foundation
 
 struct CellModel {
-    let videoLink: String
+    let urlString: String
 }
 
 class CellViewModel {
