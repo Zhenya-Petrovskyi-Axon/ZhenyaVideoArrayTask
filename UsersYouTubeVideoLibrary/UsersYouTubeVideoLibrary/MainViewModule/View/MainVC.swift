@@ -41,6 +41,14 @@ class MainVC: UIViewController {
         }
     }
     
+    @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PopupVC") as! PopupVC
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true)
+    }
+    
 }
 
 // MARK: Table View Delegates & Protocols

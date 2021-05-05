@@ -71,8 +71,7 @@
                         <barButtonItem key="rightBarButtonItem" width="100" systemItem="add" id="tLv-P8-eFm">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="100" maxX="0.0" maxY="100"/>
                             <connections>
-                                <action selector="addLinkBarButtonAction:" destination="BYZ-38-t0r" id="dpz-Wj-HLc"/>
-                                <segue destination="vLa-xc-ZLe" kind="presentation" animates="NO" modalPresentationStyle="overCurrentContext" id="Q4m-3w-dCd"/>
+                                <action selector="showPopupButtonAction:" destination="BYZ-38-t0r" id="78E-DX-sTi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -87,7 +86,7 @@
         <!--PopupVC-->
         <scene sceneID="qE0-2z-kCH">
             <objects>
-                <viewController id="vLa-xc-ZLe" customClass="PopupVC" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopupVC" id="vLa-xc-ZLe" customClass="PopupVC" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sxt-BG-Cfw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
