@@ -40,8 +40,8 @@ class MainViewModel: MainViewModelProtocol {
     init() {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         let context = appDelegate.persistentContainer.viewContext
+        
         service = CoreDataLinkService(context: context)
         service.getLinks { links in
             self.links = links

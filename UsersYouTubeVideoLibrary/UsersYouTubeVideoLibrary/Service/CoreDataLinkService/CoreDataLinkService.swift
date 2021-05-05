@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+// MARK: - Main Coredata service
 class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
@@ -29,7 +30,6 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         url.setValue(title, forKey: "title")
         url.setValue(UUID().uuidString, forKey: "identifier")
         
-        
         do {
             try context.save()
             print("Success in saving \(url)")
@@ -39,6 +39,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         }
     }
     
+    // MARK: - Get links from core Data
     func getLinks(completion: (([Link]) -> Void)) {
         
         let fetchRequest =
@@ -46,7 +47,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         
         do {
             let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
-            print(result)
+            print(result.first ?? "Did get empty data in succeeded request")
             completion(result)
             
         } catch let error as NSError {
@@ -54,8 +55,24 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         }
     }
     
-    
+    // MARK: - Remove links from core data
     func removeLink(id: String) {
+        
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
+        fetchRequest.predicate = NSPredicate.init(format: "identifier==\(id)")
+        
+        do {
+            if let result = try? context.fetch(fetchRequest) {
+                for object in result {
+                    context.delete(object)
+                }
+            }
+            
+            try context.save()
+            
+        } catch let error as NSError {
+            print("Unable to delete with error - \(error.localizedDescription)")
+        }
         
     }
 }
