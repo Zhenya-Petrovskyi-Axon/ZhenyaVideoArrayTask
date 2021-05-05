@@ -17,7 +17,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     }
     
     // MARK: - Save link to core data
-    func saveLink(link: String) {
+    func saveLink(urlString: String, title: String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -25,10 +25,15 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         let context = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "LinkCoreData", in: context)!
         let url = NSManagedObject(entity: entity, insertInto: context)
-        url.setValue(link, forKeyPath: "urlString")
+        
+        url.setValue(urlString, forKeyPath: "urlString")
+        url.setValue(title, forKey: "title")
+        url.setValue(UUID().uuidString, forKey: "identifier")
+        
         
         do {
             try context.save()
+            print("Success in saving \(url)")
             
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")

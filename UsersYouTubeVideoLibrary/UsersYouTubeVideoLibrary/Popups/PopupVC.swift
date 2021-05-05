@@ -71,13 +71,14 @@ class PopupVC: UIViewController {
             return
         }
         
-        let url = urlTextField.text
+        let url = urlTextField.text ?? "Some Link"
+        let title = titleTextField.text ?? "Some Title"
         
         let isValid = urlValidation(url: url)
         
         if isValid {
 //            mainViewModel.saveLink(link: "https://www.youtube.com/watch?v=eQiGAuNQkHU")
-            mainViewModel.service.saveLink(link: "Some link have been saved")
+            mainViewModel.service.saveLink(urlString: url, title: title )
             self.dismiss(animated: false, completion: nil)
             print("Url Is Valid")
         } else {

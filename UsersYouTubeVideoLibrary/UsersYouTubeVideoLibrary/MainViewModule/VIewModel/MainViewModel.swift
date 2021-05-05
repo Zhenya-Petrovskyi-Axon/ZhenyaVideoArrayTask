@@ -10,7 +10,7 @@ import CoreData
 
 // Mark: - Core data link service protocol
 protocol LinkDataServiceProtocol {
-    func saveLink(link: String)
+    func saveLink(urlString: String, title: String)
     func getLinks(completion: (([Link]) -> Void))
     func removeLink(id: String)
 }
