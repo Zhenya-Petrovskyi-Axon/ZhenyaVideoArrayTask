@@ -9,7 +9,9 @@ import Foundation
 
 // MARK: - Link
 struct Link {
-    let url: String
+    let id: String
+    let urlString: String
+    let title: String
 }
 
 

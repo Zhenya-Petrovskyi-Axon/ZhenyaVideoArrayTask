@@ -7,8 +7,11 @@
 
 import Foundation
 
+// MARK: - Cell model for setup usage
 struct CellModel {
-    let videoLink: String
+    let id: String
+    let urlString: String
+    let title: String
 }
 
 class CellViewModel {

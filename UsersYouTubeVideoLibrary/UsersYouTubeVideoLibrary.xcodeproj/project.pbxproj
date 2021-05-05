@@ -19,6 +19,9 @@
 		45841F8926398E49007A40D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45841F8726398E49007A40D4 /* LaunchScreen.storyboard */; };
 		458EB255263B26A300768093 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB254263B26A300768093 /* CellViewModel.swift */; };
 		458EB258263C0AA600768093 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB257263C0AA600768093 /* PopupVC.swift */; };
+		45DFC6EE264287A600BF34DE /* CoreDataLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */; };
+		45DFC6F02642C9DF00BF34DE /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */; };
+		45DFC6F22642CA1800BF34DE /* CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		45841F8A26398E49007A40D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		458EB254263B26A300768093 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		458EB257263C0AA600768093 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
+		45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLinkService.swift; sourceTree = "<group>"; };
+		45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
+		45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProperties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,10 +99,11 @@
 		45841F7826398E48007A40D4 /* UsersYouTubeVideoLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				458EB256263B307700768093 /* Popups */,
+				45DFC6EB2642877D00BF34DE /* Service */,
 				453F3AF7263AB5A500648611 /* Model */,
 				45841FA426399765007A40D4 /* Cell */,
 				45841F9726399064007A40D4 /* MainViewModule */,
+				458EB256263B307700768093 /* Popups */,
 				45841F962639903E007A40D4 /* Storyboards */,
 				45841F952639902D007A40D4 /* MainAppDelegates */,
 				45841F8526398E49007A40D4 /* Assets.xcassets */,
@@ -147,6 +154,32 @@
 				458EB257263C0AA600768093 /* PopupVC.swift */,
 			);
 			path = Popups;
+			sourceTree = "<group>";
+		};
+		45DFC6EB2642877D00BF34DE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				45DFC6F32642CBA000BF34DE /* LinkCoreDataModel */,
+				45DFC6EC2642878800BF34DE /* CoreDataLinkService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		45DFC6EC2642878800BF34DE /* CoreDataLinkService */ = {
+			isa = PBXGroup;
+			children = (
+				45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */,
+			);
+			path = CoreDataLinkService;
+			sourceTree = "<group>";
+		};
+		45DFC6F32642CBA000BF34DE /* LinkCoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */,
+				45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */,
+			);
+			path = LinkCoreDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,8 +252,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45DFC6EE264287A600BF34DE /* CoreDataLinkService.swift in Sources */,
 				45841F8426398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld in Sources */,
 				45841F7E26398E48007A40D4 /* MainVC.swift in Sources */,
+				45DFC6F02642C9DF00BF34DE /* CoreDataClass.swift in Sources */,
 				458EB255263B26A300768093 /* CellViewModel.swift in Sources */,
 				453F3B00263AC74600648611 /* LinkModel.swift in Sources */,
 				45841F7A26398E48007A40D4 /* AppDelegate.swift in Sources */,
@@ -228,6 +263,7 @@
 				458EB258263C0AA600768093 /* PopupVC.swift in Sources */,
 				45449FA5263AA63D00F1F2A6 /* VideoTableViewCell.swift in Sources */,
 				453F3AF2263AB1CE00648611 /* MainViewModel.swift in Sources */,
+				45DFC6F22642CA1800BF34DE /* CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

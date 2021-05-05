@@ -41,33 +41,33 @@ class MainVC: UIViewController {
         }
     }
     
-//    // MARK: - Show save allert
-//    func showInputPopup() {
-//        let alert = UIAlertController(title: "Upiii", message: "Wanna add a video link?", preferredStyle: .alert)
-//        
-//        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
-//            
-//            guard let textField = alert.textFields?.first,
-//                  let linkToSave = textField.text else {
-//                return
-//            }
-//            
-//            self.mainViewModel.saveLink(link: linkToSave)
-//        }
-//        
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-//        
-//        alert.addTextField()
-//        alert.addAction(saveAction)
-//        alert.addAction(cancelAction)
-//        
-//        present(alert, animated: true)
-//    }
-//    
-//    // MARK: - Call Pop-up
-//    @IBAction func addLinkBarButtonAction(_ sender: Any) {
-//        showInputPopup()
-//    }
+    //    // MARK: - Show save allert
+    //    func showInputPopup() {
+    //        let alert = UIAlertController(title: "Upiii", message: "Wanna add a video link?", preferredStyle: .alert)
+    //
+    //        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
+    //
+    //            guard let textField = alert.textFields?.first,
+    //                  let linkToSave = textField.text else {
+    //                return
+    //            }
+    //
+    //            self.mainViewModel.saveLink(link: linkToSave)
+    //        }
+    //
+    //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+    //
+    //        alert.addTextField()
+    //        alert.addAction(saveAction)
+    //        alert.addAction(cancelAction)
+    //
+    //        present(alert, animated: true)
+    //    }
+    //
+    //    // MARK: - Call Pop-up
+    //    @IBAction func addLinkBarButtonAction(_ sender: Any) {
+    //        showInputPopup()
+    //    }
     
 }
 
