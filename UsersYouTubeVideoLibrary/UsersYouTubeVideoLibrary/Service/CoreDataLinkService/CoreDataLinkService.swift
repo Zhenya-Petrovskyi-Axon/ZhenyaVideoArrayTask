@@ -13,8 +13,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
     
-    private let appDelegate =
-        UIApplication.shared.delegate as? AppDelegate
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -73,6 +72,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         } catch let error as NSError {
             print("Unable to delete with error - \(error.localizedDescription)")
         }
-        
     }
+    
+    
 }

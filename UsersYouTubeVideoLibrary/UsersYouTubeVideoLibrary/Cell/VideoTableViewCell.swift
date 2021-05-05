@@ -23,15 +23,15 @@ class VideoTableViewCell: UITableViewCell {
     }
     
     // MARK: - Setup colors & cell corners
-    private lazy var setupOnce: Void = {
+    func setupView() {
         videoLinkCellLabel.textColor = .blue
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 0.3
         contentView.layer.borderColor = UIColor.black.cgColor
-    }()
+    }
     
     override func layoutSubviews() {
-        _ = setupOnce
+        setupView()
     }
 }

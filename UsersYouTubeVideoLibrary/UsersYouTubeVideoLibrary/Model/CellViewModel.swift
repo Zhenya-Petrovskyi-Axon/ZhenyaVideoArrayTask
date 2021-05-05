@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Cell model for setup usage
 struct CellModel {
     let id: String
     let urlString: String

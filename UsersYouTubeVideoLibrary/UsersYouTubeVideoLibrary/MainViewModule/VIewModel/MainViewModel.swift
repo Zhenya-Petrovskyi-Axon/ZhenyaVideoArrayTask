@@ -17,8 +17,8 @@ protocol LinkDataServiceProtocol {
 
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
-//    func saveLink(link: String)
-//    func getLinksFromCoreData()
+    func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
+    var didGetLinks: (() -> Void) { get }
 }
 
 // MARK: - MainVC Model
@@ -53,6 +53,7 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Bind to set-up Cell
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
+        
         let url = links[indexPath.row].urlString
         let id = links[indexPath.row].id
         let title = links[indexPath.row].title
