@@ -18,7 +18,6 @@ protocol LinkDataServiceProtocol {
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
-    var didGetLinks: (() -> Void) { get }
 }
 
 // MARK: - MainVC Model
@@ -26,9 +25,10 @@ class MainViewModel: MainViewModelProtocol {
     
     let service: LinkDataServiceProtocol!
     
-    private(set) var links: [Link] = [] {
+    public var links: [Link] = [] {
         didSet {
             self.didGetLinks()
+            print("Did get links")
         }
     }
     
@@ -45,6 +45,7 @@ class MainViewModel: MainViewModelProtocol {
         service = CoreDataLinkService(context: context)
         service.getLinks { links in
             self.links = links
+            
         }
     }
     

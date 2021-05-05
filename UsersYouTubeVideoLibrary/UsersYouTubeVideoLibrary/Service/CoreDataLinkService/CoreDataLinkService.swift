@@ -57,14 +57,15 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     // MARK: - Remove links from core data
     func removeLink(id: String) {
         
-        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
-        fetchRequest.predicate = NSPredicate.init(format: "identifier==\(id)")
-        
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName:"LinkCoreData")
+        fetchRequest.predicate = NSPredicate(format: "identifier = %@", "\(id)")
         do {
-            if let result = try? context.fetch(fetchRequest) {
-                for object in result {
-                    context.delete(object)
-                }
+            let fetchedResults = try context.fetch(fetchRequest)
+            
+            for entity in fetchedResults {
+                
+                context?.delete(entity)
+                print(entity, "deleted")
             }
             
             try context.save()
