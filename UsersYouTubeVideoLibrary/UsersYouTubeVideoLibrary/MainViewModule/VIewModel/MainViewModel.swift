@@ -53,7 +53,10 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Bind to set-up Cell
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
-        let video = links[indexPath.row].urlString
-        return CellViewModel(cellModel: CellModel(urlString: video))
+        let url = links[indexPath.row].urlString
+        let id = links[indexPath.row].id
+        let title = links[indexPath.row].title
+        
+        return CellViewModel(cellModel: CellModel(id: id, urlString: url, title: title))
     }
 }

@@ -8,7 +8,9 @@
 import Foundation
 
 struct CellModel {
+    let id: String
     let urlString: String
+    let title: String
 }
 
 class CellViewModel {
