@@ -19,15 +19,15 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
                                 <rect key="frame" x="8" y="88" width="398" height="774"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="45" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="398" height="45"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="50" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="398" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmj-fM-G4e" id="6h6-uy-jQf">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="45"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH7-Ga-lOO">
-                                                    <rect key="frame" x="8" y="12" width="42" height="21"/>
+                                                    <rect key="frame" x="8" y="14.5" width="42" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" placeholder="YES" id="HzK-E0-9be"/>
                                                     </constraints>
@@ -36,7 +36,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
-                                                    <rect key="frame" x="58" y="12.5" width="305" height="20.5"/>
+                                                    <rect key="frame" x="58" y="15" width="305" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -93,29 +93,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7eT-t6-dFj" userLabel="MainPopupView">
-                                <rect key="frame" x="50" y="144" width="314" height="210"/>
+                                <rect key="frame" x="47" y="174" width="320" height="180"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="kBb-dR-UBz">
-                                        <rect key="frame" x="68.5" y="8" width="177.5" height="45.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <rect key="frame" x="85" y="8" width="150.5" height="38.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Video Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-Ib-lgg">
-                                        <rect key="frame" x="8" y="65.5" width="298" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0gY-IU-ovS"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Video URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ri1-a7-yG7">
-                                        <rect key="frame" x="8" y="107.5" width="298" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="YHS-ct-tbz">
+                                        <rect key="frame" x="12" y="54" width="296" height="72"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Video Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvk-Ib-lgg">
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="LxQ-X6-Kmm"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Video URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ri1-a7-yG7">
+                                                <rect key="frame" x="0.0" y="42" width="296" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="ECU-o7-uk1"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xar-Dg-kyY">
-                                        <rect key="frame" x="135.5" y="166" width="43" height="36"/>
+                                        <rect key="frame" x="138.5" y="136" width="43" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Save"/>
                                         <connections>
@@ -125,34 +133,26 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="ri1-a7-yG7" firstAttribute="leading" secondItem="7eT-t6-dFj" secondAttribute="leading" constant="8" id="3X1-p2-e13"/>
-                                    <constraint firstItem="hvk-Ib-lgg" firstAttribute="leading" secondItem="7eT-t6-dFj" secondAttribute="leading" constant="8" id="8Ro-1J-l94"/>
-                                    <constraint firstItem="hvk-Ib-lgg" firstAttribute="top" secondItem="kBb-dR-UBz" secondAttribute="bottom" constant="12" id="WHM-4Y-NRd"/>
+                                    <constraint firstAttribute="width" constant="320" id="N8K-Gx-TOq"/>
+                                    <constraint firstItem="YHS-ct-tbz" firstAttribute="centerY" secondItem="7eT-t6-dFj" secondAttribute="centerY" id="SVi-Xd-Ax2"/>
                                     <constraint firstItem="kBb-dR-UBz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7eT-t6-dFj" secondAttribute="leading" id="Xcq-jP-gmn"/>
-                                    <constraint firstItem="kBb-dR-UBz" firstAttribute="top" secondItem="7eT-t6-dFj" secondAttribute="top" constant="8" id="bGh-Jf-igF"/>
-                                    <constraint firstItem="ri1-a7-yG7" firstAttribute="height" secondItem="hvk-Ib-lgg" secondAttribute="height" multiplier="1.13333" id="dq7-rv-RIb"/>
-                                    <constraint firstItem="ri1-a7-yG7" firstAttribute="top" secondItem="hvk-Ib-lgg" secondAttribute="bottom" constant="12" id="h1X-OO-e5J"/>
+                                    <constraint firstItem="YHS-ct-tbz" firstAttribute="centerX" secondItem="7eT-t6-dFj" secondAttribute="centerX" id="YVg-XB-w1H"/>
                                     <constraint firstItem="kBb-dR-UBz" firstAttribute="centerX" secondItem="7eT-t6-dFj" secondAttribute="centerX" id="hHq-47-dec"/>
-                                    <constraint firstAttribute="trailing" secondItem="hvk-Ib-lgg" secondAttribute="trailing" constant="8" id="hQS-3i-LgV"/>
+                                    <constraint firstAttribute="height" constant="180" id="j8O-7N-KIJ"/>
                                     <constraint firstItem="xar-Dg-kyY" firstAttribute="centerX" secondItem="7eT-t6-dFj" secondAttribute="centerX" id="kTX-xS-s5d"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kBb-dR-UBz" secondAttribute="trailing" id="oqq-YR-AmF"/>
                                     <constraint firstAttribute="bottom" secondItem="xar-Dg-kyY" secondAttribute="bottom" constant="8" id="v9t-UO-XMf"/>
-                                    <constraint firstAttribute="trailing" secondItem="ri1-a7-yG7" secondAttribute="trailing" constant="8" id="vhy-lW-gWF"/>
+                                    <constraint firstItem="YHS-ct-tbz" firstAttribute="leading" secondItem="7eT-t6-dFj" secondAttribute="leading" constant="12" id="vib-tk-JEL"/>
                                     <constraint firstItem="kBb-dR-UBz" firstAttribute="top" secondItem="7eT-t6-dFj" secondAttribute="top" constant="8" id="yYW-U2-K1T"/>
+                                    <constraint firstAttribute="trailing" secondItem="YHS-ct-tbz" secondAttribute="trailing" constant="12" id="z47-je-qzS"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EHw-ps-SY0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7eT-t6-dFj" firstAttribute="leading" secondItem="EHw-ps-SY0" secondAttribute="leading" constant="50" id="7MB-mF-wdr"/>
-                            <constraint firstItem="hvk-Ib-lgg" firstAttribute="top" secondItem="kBb-dR-UBz" secondAttribute="bottom" constant="12" id="FCf-3u-xic"/>
-                            <constraint firstItem="7eT-t6-dFj" firstAttribute="top" secondItem="EHw-ps-SY0" secondAttribute="top" constant="100" id="RHX-K2-b8e"/>
-                            <constraint firstItem="hvk-Ib-lgg" firstAttribute="leading" secondItem="sxt-BG-Cfw" secondAttribute="leading" constant="58" id="Srh-YV-tFm"/>
-                            <constraint firstAttribute="trailing" secondItem="hvk-Ib-lgg" secondAttribute="trailing" constant="58" id="eeN-ec-V90"/>
+                            <constraint firstItem="7eT-t6-dFj" firstAttribute="top" secondItem="EHw-ps-SY0" secondAttribute="top" constant="130" id="RHX-K2-b8e"/>
                             <constraint firstItem="7eT-t6-dFj" firstAttribute="centerX" secondItem="sxt-BG-Cfw" secondAttribute="centerX" id="pSI-nn-jcC"/>
-                            <constraint firstItem="EHw-ps-SY0" firstAttribute="bottom" secondItem="7eT-t6-dFj" secondAttribute="bottom" constant="508" id="rgW-Tn-Xg4"/>
-                            <constraint firstItem="EHw-ps-SY0" firstAttribute="trailing" secondItem="7eT-t6-dFj" secondAttribute="trailing" constant="50" id="yxM-cP-Ap5"/>
                         </constraints>
                     </view>
                     <connections>
