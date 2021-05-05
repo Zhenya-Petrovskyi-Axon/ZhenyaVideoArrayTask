@@ -20,6 +20,8 @@
 		458EB255263B26A300768093 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB254263B26A300768093 /* CellViewModel.swift */; };
 		458EB258263C0AA600768093 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458EB257263C0AA600768093 /* PopupVC.swift */; };
 		45DFC6EE264287A600BF34DE /* CoreDataLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */; };
+		45DFC6F02642C9DF00BF34DE /* CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */; };
+		45DFC6F22642CA1800BF34DE /* CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		458EB254263B26A300768093 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		458EB257263C0AA600768093 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLinkService.swift; sourceTree = "<group>"; };
+		45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClass.swift; sourceTree = "<group>"; };
+		45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProperties.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,17 +159,27 @@
 		45DFC6EB2642877D00BF34DE /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				45DFC6EC2642878800BF34DE /* CoreData */,
+				45DFC6F32642CBA000BF34DE /* LinkCoreDataModel */,
+				45DFC6EC2642878800BF34DE /* CoreDataLinkService */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		45DFC6EC2642878800BF34DE /* CoreData */ = {
+		45DFC6EC2642878800BF34DE /* CoreDataLinkService */ = {
 			isa = PBXGroup;
 			children = (
 				45DFC6ED264287A600BF34DE /* CoreDataLinkService.swift */,
 			);
-			path = CoreData;
+			path = CoreDataLinkService;
+			sourceTree = "<group>";
+		};
+		45DFC6F32642CBA000BF34DE /* LinkCoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				45DFC6EF2642C9DF00BF34DE /* CoreDataClass.swift */,
+				45DFC6F12642CA1800BF34DE /* CoreDataProperties.swift */,
+			);
+			path = LinkCoreDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +255,7 @@
 				45DFC6EE264287A600BF34DE /* CoreDataLinkService.swift in Sources */,
 				45841F8426398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld in Sources */,
 				45841F7E26398E48007A40D4 /* MainVC.swift in Sources */,
+				45DFC6F02642C9DF00BF34DE /* CoreDataClass.swift in Sources */,
 				458EB255263B26A300768093 /* CellViewModel.swift in Sources */,
 				453F3B00263AC74600648611 /* LinkModel.swift in Sources */,
 				45841F7A26398E48007A40D4 /* AppDelegate.swift in Sources */,
@@ -248,6 +263,7 @@
 				458EB258263C0AA600768093 /* PopupVC.swift in Sources */,
 				45449FA5263AA63D00F1F2A6 /* VideoTableViewCell.swift in Sources */,
 				453F3AF2263AB1CE00648611 /* MainViewModel.swift in Sources */,
+				45DFC6F22642CA1800BF34DE /* CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

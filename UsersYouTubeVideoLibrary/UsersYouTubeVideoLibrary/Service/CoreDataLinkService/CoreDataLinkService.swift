@@ -42,11 +42,12 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     func getLinks(completion: (([Link]) -> Void)) {
         
         let fetchRequest =
-            NSFetchRequest<NSManagedObject>(entityName: "LinkCoreData")
+            NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
         
         do {
-            let result = try context.fetch(fetchRequest) as? [Link] ?? []
+            let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
             print(result)
+            completion(result)
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
