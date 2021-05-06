@@ -18,33 +18,39 @@ protocol LinkDataServiceProtocol {
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
+    func refresh()
 }
 
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
-    let service: LinkDataServiceProtocol!
+    var service: LinkDataServiceProtocol!
     
-    public var links: [Link] = [] {
+    public var arrayOfLinks: [Link] = [] {
         didSet {
             self.didGetLinks()
-            print("Did get links")
+            print("arrayOfLinks did get updated with links from LinkCoreData")
         }
     }
     
     // MARK: - Array capacity counter
     public var linksCount: Int {
-        return links.count
+        return arrayOfLinks.count
     }
     
     init() {
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
         service = CoreDataLinkService(context: context)
+        
+        refresh()
+    }
+    
+    // MARK: - Refresh view
+    func refresh() {
         service.getLinks { links in
-            self.links = links
+            self.arrayOfLinks = links
             
         }
     }
@@ -55,9 +61,9 @@ class MainViewModel: MainViewModelProtocol {
     // MARK: - Bind to set-up Cell
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
         
-        let url = links[indexPath.row].urlString
-        let id = links[indexPath.row].id
-        let title = links[indexPath.row].title
+        let url = arrayOfLinks[indexPath.row].urlString
+        let id = arrayOfLinks[indexPath.row].id
+        let title = arrayOfLinks[indexPath.row].title
         
         return CellViewModel(cellModel: CellModel(id: id, urlString: url, title: title))
     }

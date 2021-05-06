@@ -19,22 +19,9 @@ class PopupVC: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        print("Popup viewDidLoad")
+        print("PopupView viewDidLoad")
         
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-
-            if let firstVC = presentingViewController as? MainVC {
-                DispatchQueue.main.async {
-                    firstVC.mainViewModel.service.getLinks { link in
-                        firstVC.mainViewModel.links.append(contentsOf: link)
-                        firstVC.setupBindings()
-                    }
-                }
-            }
-        }
     
     // MARK: - Setup view
     func setupView() {
@@ -83,10 +70,10 @@ class PopupVC: UIViewController {
         if popupViewModel.isUrlValid(url: url) == true {
             
             popupViewModel.saveLink(urlString: url, title: title)
-            
+            popupViewModel.mianVCNeedRefresh()
+            print("\(url) Is valid to save")
             self.dismiss(animated: false, completion: nil)
-            print("Url Is Valid")
-            
+             
         } else {
             // show allert
             print("Url is not valid")

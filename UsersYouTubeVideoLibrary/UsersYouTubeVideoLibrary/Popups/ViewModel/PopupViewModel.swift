@@ -25,18 +25,23 @@ class PopupViewModel {
         let context = appDelegate.persistentContainer.viewContext
         
         service = CoreDataLinkService(context: context)
-        
     }
     
-    // MARK: - Save link to core data
+    // MARK: - Save link to core data & main array
     func saveLink(urlString: String, title: String) {
-        service.saveLink(urlString: urlString, title: urlString)
+        service.saveLink(urlString: urlString, title: title)
     }
     
     // MARK: - URL Validation
     func isUrlValid(url: String?) -> Bool {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
+    }
+    
+    // MARK: - Refresh data source
+    func mianVCNeedRefresh() {
+        let mainViewModel = MainViewModel()
+        mainViewModel.refresh()
     }
     
 }
