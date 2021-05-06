@@ -16,6 +16,7 @@ protocol PopupViewModelProtocol {
 class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
+    private lazy var vc = MainVC()
     
     private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
     
@@ -25,6 +26,7 @@ class PopupViewModel {
         let context = appDelegate.persistentContainer.viewContext
         
         service = CoreDataLinkService(context: context)
+        
     }
     
     // MARK: - Save link to core data & main array
@@ -40,8 +42,7 @@ class PopupViewModel {
     
     // MARK: - Refresh data source
     func mianVCNeedRefresh() {
-        let mainViewModel = MainViewModel()
-        mainViewModel.refresh()
+        vc.mainViewModel.refresh()
     }
     
 }

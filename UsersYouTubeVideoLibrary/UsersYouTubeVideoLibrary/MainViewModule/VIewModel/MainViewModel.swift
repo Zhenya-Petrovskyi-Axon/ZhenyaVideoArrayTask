@@ -51,7 +51,6 @@ class MainViewModel: MainViewModelProtocol {
     func refresh() {
         service.getLinks { links in
             self.arrayOfLinks = links
-            
         }
     }
     
