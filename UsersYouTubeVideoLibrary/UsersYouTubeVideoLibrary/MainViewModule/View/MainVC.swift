@@ -46,6 +46,7 @@ class MainVC: UIViewController {
     @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PopupVC") as! PopupVC
+        vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
@@ -53,7 +54,14 @@ class MainVC: UIViewController {
     
 }
 
-// MARK: Table View Delegates & Protocols
+// MARK: - Delegate
+extension MainVC: PopupDelegate {
+    func didSaveNewLink() {
+        mainViewModel.refresh()
+    }
+}
+
+// MARK: - Table View Delegates & Protocols
 extension MainVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

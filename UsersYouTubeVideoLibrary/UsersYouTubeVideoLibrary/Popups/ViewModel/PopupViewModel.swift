@@ -16,7 +16,6 @@ protocol PopupViewModelProtocol {
 class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
-    private lazy var vc = MainVC()
     
     private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
     
@@ -38,11 +37,6 @@ class PopupViewModel {
     func isUrlValid(url: String?) -> Bool {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
-    }
-    
-    // MARK: - Refresh data source
-    func mianVCNeedRefresh() {
-        vc.mainViewModel.refresh()
     }
     
 }
