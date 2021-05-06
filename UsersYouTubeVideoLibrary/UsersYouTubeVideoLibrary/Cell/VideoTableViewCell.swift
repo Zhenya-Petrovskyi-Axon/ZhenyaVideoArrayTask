@@ -10,6 +10,7 @@ import UIKit
 class VideoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var videoLinkCellLabel: UILabel!
+    @IBOutlet weak var videoLinkTitleLabel: UILabel!
     
     @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
     
@@ -17,6 +18,7 @@ class VideoTableViewCell: UITableViewCell {
     
     var viewModel: CellViewModel! {
         didSet {
+            videoLinkTitleLabel.text = viewModel.cellModel.title
             videoLinkCellLabel.text = viewModel.cellModel.urlString
             videoLinkCellDesriptionLabel.text = cellDescriptionHead
         }

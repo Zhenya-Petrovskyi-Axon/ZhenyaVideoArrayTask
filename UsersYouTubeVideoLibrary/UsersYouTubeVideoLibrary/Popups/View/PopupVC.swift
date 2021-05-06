@@ -7,20 +7,25 @@
 
 import UIKit
 
+protocol PopupDelegate: AnyObject {
+    func didSaveNewLink()
+}
+
 class PopupVC: UIViewController {
     
     @IBOutlet weak var mainPopupView: UIView!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private let mainViewModel = MainViewModel()
+    weak var delegate: PopupDelegate?
     
-    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
+    let popupViewModel = PopupViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        print("PopupView viewDidLoad")
         
     }
     
@@ -28,21 +33,21 @@ class PopupVC: UIViewController {
     func setupView() {
         
         // MARK: - 3D effect for popup view
-        self.mainPopupView.layer.shadowRadius = 5
-        self.mainPopupView.layer.shadowColor = UIColor.black.cgColor
-        self.mainPopupView.layer.shadowOpacity = 0.6
-        self.mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        mainPopupView.layer.shadowRadius = 5
+        mainPopupView.layer.shadowColor = UIColor.black.cgColor
+        mainPopupView.layer.shadowOpacity = 0.6
+        mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
         
         // MARK: - Basic setup of view
-        self.mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
-        self.mainPopupView.layer.masksToBounds = true
-        self.mainPopupView.layer.cornerRadius = 20
-        self.mainPopupView.layer.borderWidth = 1
-        self.mainPopupView.layer.borderColor = UIColor.white.cgColor
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
+        mainPopupView.layer.masksToBounds = true
+        mainPopupView.layer.cornerRadius = 20
+        mainPopupView.layer.borderWidth = 1
+        mainPopupView.layer.borderColor = UIColor.white.cgColor
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         // MARK: - Text fields setup
-        [self.titleTextField, self.urlTextField] .forEach { $0?.layer.masksToBounds = true
+        [titleTextField, urlTextField] .forEach { $0?.layer.masksToBounds = true
             $0?.layer.cornerRadius = 10
             $0?.layer.borderWidth = 0.3
             $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
@@ -52,15 +57,9 @@ class PopupVC: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
-    // MARK: - URL Validation
-    func urlValidation(url: String?) -> Bool {
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
-        return predicate.evaluate(with: url)
-    }
-    
     // MARK: - Dissmiss pop-up with tap on screen
     @objc func dismissView(){
-        self.dismiss(animated: false, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Check & save data
@@ -74,14 +73,14 @@ class PopupVC: UIViewController {
         let url = urlTextField.text ?? "Some Link"
         let title = titleTextField.text ?? "Some Title"
         
-        let isValid = urlValidation(url: url)
-        
-        if isValid {
+        if popupViewModel.isUrlValid(url: url) == true {
             
-            mainViewModel.service.saveLink(urlString: url, title: title )
-            self.dismiss(animated: false, completion: nil)
-            print("Url Is Valid")
-            
+            popupViewModel.saveLink(urlString: url, title: title)
+            print("\(url) Is valid to save")
+            self.dismiss(animated: false, completion: { [weak self] in
+                self?.delegate?.didSaveNewLink()
+            })
+             
         } else {
             // show allert
             print("Url is not valid")

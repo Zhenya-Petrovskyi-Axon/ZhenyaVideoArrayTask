@@ -11,13 +11,14 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var videoTableView: UITableView!
     
-    var mainViewModel = MainViewModel()
+    let mainViewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupBindings()
         setupDelegates()
+        print("MainView viewDidLoad")
         
     }
     
@@ -27,7 +28,7 @@ class MainVC: UIViewController {
         videoTableView.dataSource = self
     }
     
-    // MARK: - Bindings
+    // MARK: - Binding with MainViewModel
     func setupBindings() {
         self.mainViewModel.didGetLinks = { [weak self] in
             self?.updateDataSource()
@@ -38,47 +39,53 @@ class MainVC: UIViewController {
     func updateDataSource() {
         DispatchQueue.main.async { [weak self] in
             self?.videoTableView.reloadData()
+            print("Did update dataSource")
         }
     }
     
-    //    // MARK: - Show save allert
-    //    func showInputPopup() {
-    //        let alert = UIAlertController(title: "Upiii", message: "Wanna add a video link?", preferredStyle: .alert)
-    //
-    //        let saveAction = UIAlertAction(title: "Save", style: .default) { [unowned self] action in
-    //
-    //            guard let textField = alert.textFields?.first,
-    //                  let linkToSave = textField.text else {
-    //                return
-    //            }
-    //
-    //            self.mainViewModel.saveLink(link: linkToSave)
-    //        }
-    //
-    //        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-    //
-    //        alert.addTextField()
-    //        alert.addAction(saveAction)
-    //        alert.addAction(cancelAction)
-    //
-    //        present(alert, animated: true)
-    //    }
-    //
-    //    // MARK: - Call Pop-up
-    //    @IBAction func addLinkBarButtonAction(_ sender: Any) {
-    //        showInputPopup()
-    //    }
+    @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PopupVC") as! PopupVC
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
     
 }
 
-// MARK: Table View Delegates & Protocols
+// MARK: - Delegate
+extension MainVC: PopupDelegate {
+    func didSaveNewLink() {
+        mainViewModel.refresh()
+    }
+}
+
+// MARK: - Table View Delegates & Protocols
 extension MainVC: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            videoTableView.beginUpdates()
+            
+            mainViewModel.service.removeLink(id: mainViewModel.arrayOfLinks[indexPath.row].id)
+            mainViewModel.refresh()
+            videoTableView.deleteRows(at: [indexPath], with: .fade)
+            
+            videoTableView.endUpdates()
+        }
+    }
     
 }
 
 extension MainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainViewModel.linksCount
+        return mainViewModel.arrayOfLinks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -86,6 +93,4 @@ extension MainVC: UITableViewDataSource {
         cell.viewModel = mainViewModel.viewModelForCell(indexPath)
         return cell
     }
-    
-    
 }

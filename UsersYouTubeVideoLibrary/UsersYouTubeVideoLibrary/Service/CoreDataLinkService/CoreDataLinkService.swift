@@ -31,7 +31,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         
         do {
             try context.save()
-            print("Success in saving \(url)")
+            print("Success in saving \(urlString)")
             
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
@@ -46,8 +46,10 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         
         do {
             let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
-            print(result.first ?? "Did get empty data in succeeded request")
+            print("Did get some data from LinkCoreData")
+            try context.save()
             completion(result)
+            
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -57,14 +59,15 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     // MARK: - Remove links from core data
     func removeLink(id: String) {
         
-        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
-        fetchRequest.predicate = NSPredicate.init(format: "identifier==\(id)")
-        
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName:"LinkCoreData")
+        fetchRequest.predicate = NSPredicate(format: "identifier = %@", "\(id)")
         do {
-            if let result = try? context.fetch(fetchRequest) {
-                for object in result {
-                    context.delete(object)
-                }
+            let fetchedResults = try context.fetch(fetchRequest)
+            
+            for entity in fetchedResults {
+                
+                context?.delete(entity)
+                print(entity.urlString, "- is deleted from LinkCoreData")
             }
             
             try context.save()

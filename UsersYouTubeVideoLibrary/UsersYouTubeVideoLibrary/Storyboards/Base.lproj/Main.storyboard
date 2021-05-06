@@ -16,18 +16,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3NV-Mg-Gfk">
                                 <rect key="frame" x="8" y="88" width="398" height="774"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="50" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="398" height="50"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoCell" rowHeight="110" id="rmj-fM-G4e" customClass="VideoTableViewCell" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="398" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rmj-fM-G4e" id="6h6-uy-jQf">
-                                            <rect key="frame" x="0.0" y="0.0" width="398" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH7-Ga-lOO">
-                                                    <rect key="frame" x="8" y="14.5" width="42" height="21"/>
+                                                    <rect key="frame" x="8" y="45" width="42" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" placeholder="YES" id="HzK-E0-9be"/>
                                                     </constraints>
@@ -35,24 +35,36 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
-                                                    <rect key="frame" x="58" y="15" width="305" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-wx-VEV">
+                                                    <rect key="frame" x="62" y="27" width="304" height="56"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-qf-cXF">
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
+                                                            <rect key="frame" x="0.0" y="35.5" width="304" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="sH7-Ga-lOO" secondAttribute="trailing" constant="8" id="E1e-cZ-z7v"/>
-                                                <constraint firstItem="soi-6M-yZG" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="FvT-1t-auJ"/>
+                                                <constraint firstItem="Mo0-wx-VEV" firstAttribute="leading" secondItem="sH7-Ga-lOO" secondAttribute="trailing" constant="12" id="Lbg-jv-89A"/>
                                                 <constraint firstItem="sH7-Ga-lOO" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="S6r-Ob-nA6"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="soi-6M-yZG" secondAttribute="trailing" constant="15" id="mLL-ef-Dbx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Mo0-wx-VEV" secondAttribute="trailing" constant="12" id="dl4-cv-9Sn"/>
+                                                <constraint firstItem="Mo0-wx-VEV" firstAttribute="centerY" secondItem="6h6-uy-jQf" secondAttribute="centerY" id="nh3-oM-Ee3"/>
                                                 <constraint firstItem="sH7-Ga-lOO" firstAttribute="leading" secondItem="6h6-uy-jQf" secondAttribute="leading" constant="8" id="zWi-PH-rDS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="videoLinkCellDesriptionLabel" destination="sH7-Ga-lOO" id="sdd-Pr-4fW"/>
                                             <outlet property="videoLinkCellLabel" destination="soi-6M-yZG" id="6IG-wn-I6t"/>
+                                            <outlet property="videoLinkTitleLabel" destination="bNv-qf-cXF" id="HsO-3d-Ao3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -71,8 +83,7 @@
                         <barButtonItem key="rightBarButtonItem" width="100" systemItem="add" id="tLv-P8-eFm">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="100" maxX="0.0" maxY="100"/>
                             <connections>
-                                <action selector="addLinkBarButtonAction:" destination="BYZ-38-t0r" id="dpz-Wj-HLc"/>
-                                <segue destination="vLa-xc-ZLe" kind="presentation" animates="NO" modalPresentationStyle="overCurrentContext" id="Q4m-3w-dCd"/>
+                                <action selector="showPopupButtonAction:" destination="BYZ-38-t0r" id="78E-DX-sTi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -87,7 +98,7 @@
         <!--PopupVC-->
         <scene sceneID="qE0-2z-kCH">
             <objects>
-                <viewController id="vLa-xc-ZLe" customClass="PopupVC" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopupVC" id="vLa-xc-ZLe" customClass="PopupVC" customModule="UsersYouTubeVideoLibrary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sxt-BG-Cfw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
