@@ -22,6 +22,4 @@ extension LinkCoreData {
     
 }
 
-extension LinkCoreData: Identifiable {
-    
-}
+extension LinkCoreData: Identifiable { }
