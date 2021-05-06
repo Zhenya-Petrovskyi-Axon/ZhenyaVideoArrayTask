@@ -8,9 +8,7 @@
 import Foundation
 import CoreData
 
-public class LinkCoreData: NSManagedObject {
-    
-}
+public class LinkCoreData: NSManagedObject { }
 
 extension LinkCoreData {
     

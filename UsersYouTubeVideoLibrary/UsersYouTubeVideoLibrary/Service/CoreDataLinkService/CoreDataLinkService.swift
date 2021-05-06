@@ -12,7 +12,6 @@ import CoreData
 class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
-    
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     init(context: NSManagedObjectContext) {
@@ -41,15 +40,13 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     // MARK: - Get links from core Data
     func getLinks(completion: (([Link]) -> Void)) {
         
-        let fetchRequest =
-            NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
         
         do {
             let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
             print("Did get some data from LinkCoreData")
             try context.save()
             completion(result)
-            
             
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
@@ -65,7 +62,6 @@ class CoreDataLinkService: LinkDataServiceProtocol {
             let fetchedResults = try context.fetch(fetchRequest)
             
             for entity in fetchedResults {
-                
                 context?.delete(entity)
                 print(entity.urlString, "- is deleted from LinkCoreData")
             }

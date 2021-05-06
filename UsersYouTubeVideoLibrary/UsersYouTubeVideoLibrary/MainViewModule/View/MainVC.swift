@@ -15,11 +15,8 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupBindings()
         setupDelegates()
-        print("MainView viewDidLoad")
-        
     }
     
     // MARK: - Setup tableView delegates
@@ -63,13 +60,11 @@ extension MainVC: PopupDelegate {
 
 // MARK: - Table View Delegates & Protocols
 extension MainVC: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             videoTableView.beginUpdates()
             
@@ -80,7 +75,6 @@ extension MainVC: UITableViewDelegate {
             videoTableView.endUpdates()
         }
     }
-    
 }
 
 extension MainVC: UITableViewDataSource {

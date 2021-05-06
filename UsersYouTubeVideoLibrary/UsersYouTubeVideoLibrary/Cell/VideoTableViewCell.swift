@@ -11,7 +11,6 @@ class VideoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var videoLinkCellLabel: UILabel!
     @IBOutlet weak var videoLinkTitleLabel: UILabel!
-    
     @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
     
     private var cellDescriptionHead = "URL:"

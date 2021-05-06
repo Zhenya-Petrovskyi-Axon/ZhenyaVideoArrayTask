@@ -7,26 +7,25 @@
 
 import UIKit
 
+// MARK: - Protocol for MainVC to update data
 protocol PopupDelegate: AnyObject {
     func didSaveNewLink()
 }
 
+// MARK: - Main PopupVC Class
 class PopupVC: UIViewController {
     
     @IBOutlet weak var mainPopupView: UIView!
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    weak var delegate: PopupDelegate?
-    
     let popupViewModel = PopupViewModel()
+    
+    weak var delegate: PopupDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
-        print("PopupView viewDidLoad")
-        
     }
     
     // MARK: - Setup view
@@ -74,13 +73,10 @@ class PopupVC: UIViewController {
         let title = titleTextField.text ?? "Some Title"
         
         if popupViewModel.isUrlValid(url: url) == true {
-            
             popupViewModel.saveLink(urlString: url, title: title)
-            print("\(url) Is valid to save")
             self.dismiss(animated: false, completion: { [weak self] in
                 self?.delegate?.didSaveNewLink()
             })
-             
         } else {
             // show allert
             print("Url is not valid")
