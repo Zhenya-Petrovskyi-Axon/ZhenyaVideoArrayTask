@@ -78,6 +78,7 @@ extension MainVC: UITableViewDelegate {
         }
     }
     
+    // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         videoPlayer.playVideo(view: self, url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
     }
