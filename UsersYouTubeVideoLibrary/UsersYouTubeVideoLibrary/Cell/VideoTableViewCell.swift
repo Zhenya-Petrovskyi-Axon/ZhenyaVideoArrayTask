@@ -30,8 +30,7 @@ class VideoTableViewCell: UITableViewCell {
         viewForLabels.layer.masksToBounds = true
         viewForLabels.layer.cornerRadius = 15
         viewForLabels.layer.borderWidth = 0.3
-        viewForLabels.layer.borderColor = UIColor.black.cgColor
-        viewForLabels.backgroundColor = .systemGray4
+        viewForLabels.layer.borderColor = UIColor.systemYellow.cgColor
     }
     
     override func layoutSubviews() {

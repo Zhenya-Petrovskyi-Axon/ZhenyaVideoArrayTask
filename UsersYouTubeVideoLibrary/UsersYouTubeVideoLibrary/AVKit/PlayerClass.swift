@@ -14,7 +14,7 @@ protocol PlayerClassProtocol {
 
 class PlayerClass {
     
-    // MARK: - Main videoPlayer func
+    // MARK: - Main videoPlayer func to play video
     func playVideo(view: UIViewController,url: String) {
         
         guard let urlToPlay = URL(string: url) else {return}
