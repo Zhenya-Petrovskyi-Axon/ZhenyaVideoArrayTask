@@ -60,18 +60,15 @@ extension MainVC: PopupDelegate {
 
 // MARK: - Table View Delegates & Protocols
 extension MainVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle { .delete }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            videoTableView.beginUpdates()
-            mainViewModel.service.removeLink(id: mainViewModel.arrayOfLinks[indexPath.row].id)
-            mainViewModel.refresh()
-            videoTableView.deleteRows(at: [indexPath], with: .fade)
-            videoTableView.endUpdates()
-        }
+        guard editingStyle == .delete else { return }
+        videoTableView.beginUpdates()
+        mainViewModel.service.removeLink(id: mainViewModel.arrayOfLinks[indexPath.row].id)
+        mainViewModel.refresh()
+        videoTableView.deleteRows(at: [indexPath], with: .fade)
+        videoTableView.endUpdates()
     }
     
     // MARK: Play video from selected row
@@ -79,10 +76,9 @@ extension MainVC: UITableViewDelegate {
         playVideo(url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
     }
 }
-
 extension MainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mainViewModel.arrayOfLinks.count
+        mainViewModel.linksCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
