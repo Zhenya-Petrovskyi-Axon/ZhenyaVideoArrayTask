@@ -54,7 +54,7 @@ class MainVC: UIViewController {
 // MARK: - Delegate
 extension MainVC: PopupDelegate {
     func didSaveNewLink() {
-        mainViewModel.refresh()
+        mainViewModel.getLinks()
     }
 }
 
@@ -65,8 +65,8 @@ extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         videoTableView.beginUpdates()
-        mainViewModel.service.removeLink(id: mainViewModel.arrayOfLinks[indexPath.row].id)
-        mainViewModel.refresh()
+        mainViewModel.removeLink(at: indexPath)
+        mainViewModel.getLinks()
         videoTableView.deleteRows(at: [indexPath], with: .fade)
         videoTableView.endUpdates()
     }
