@@ -46,40 +46,36 @@ class PopupVC: UIViewController {
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         
         // MARK: - Text fields setup
-        [titleTextField, urlTextField] .forEach { $0?.layer.masksToBounds = true
+        [titleTextField, urlTextField].forEach {
+            $0?.layer.masksToBounds = true
             $0?.layer.cornerRadius = 10
             $0?.layer.borderWidth = 0.3
             $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         }
         
         // MARK: - Tap on screen to dissmiss popup
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
     // MARK: - Dissmiss pop-up with tap on screen
-    @objc func dismissView(){
-        self.dismiss(animated: true, completion: nil)
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Check & save data
     @IBAction func saveButtonAction(_ sender: UIButton) {
-        
         guard urlTextField.text != "" else {
-            print("Url field is empty")
             return
         }
-        
         let url = urlTextField.text ?? "Some Link"
         let title = titleTextField.text ?? "Some Title"
-        
-        if popupViewModel.isUrlValid(url: url) == true {
-            popupViewModel.saveLink(urlString: url, title: title)
-            self.dismiss(animated: false, completion: { [weak self] in
-                self?.delegate?.userDidSaveNewLink()
-            })
-        } else {
-            // show allert
-            print("Url is not valid")
+        guard popupViewModel.isUrlValid(url: url) else {
+            // TODO: - Make an allert
+            return
         }
+        popupViewModel.saveLink(urlString: url, title: title)
+        self.dismiss(animated: false, completion: { [weak self] in
+            self?.delegate?.userDidSaveNewLink()
+        })
     }
 }
