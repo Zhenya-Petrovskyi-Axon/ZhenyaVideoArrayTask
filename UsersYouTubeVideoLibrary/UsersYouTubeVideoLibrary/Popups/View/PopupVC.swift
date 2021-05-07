@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Protocol for MainVC to update data
 protocol PopupDelegate: AnyObject {
-    func didSaveNewLink()
+    func userDidSaveNewLink()
 }
 
 // MARK: - Main PopupVC Class
@@ -75,7 +75,7 @@ class PopupVC: UIViewController {
         if popupViewModel.isUrlValid(url: url) == true {
             popupViewModel.saveLink(urlString: url, title: title)
             self.dismiss(animated: false, completion: { [weak self] in
-                self?.delegate?.didSaveNewLink()
+                self?.delegate?.userDidSaveNewLink()
             })
         } else {
             // show allert

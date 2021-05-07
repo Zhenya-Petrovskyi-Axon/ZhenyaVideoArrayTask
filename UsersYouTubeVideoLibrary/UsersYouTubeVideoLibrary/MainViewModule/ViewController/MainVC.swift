@@ -11,6 +11,9 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var videoTableView: UITableView!
     
+    let cellID = "VideoCell"
+    let popupID = "PopupVC"
+    
     let mainViewModel = MainViewModel()
     
     override func viewDidLoad() {
@@ -36,13 +39,13 @@ class MainVC: UIViewController {
     func updateDataSource() {
         DispatchQueue.main.async { [weak self] in
             self?.videoTableView.reloadData()
-            print("Did update dataSource")
         }
     }
     
+    // MARK: - Show popup to add new links
     @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "PopupVC") as! PopupVC
+        let vc = storyboard.instantiateViewController(withIdentifier: popupID) as! PopupVC
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
@@ -53,15 +56,16 @@ class MainVC: UIViewController {
 
 // MARK: - Delegate
 extension MainVC: PopupDelegate {
-    func didSaveNewLink() {
+    func userDidSaveNewLink() {
         mainViewModel.getLinks()
     }
 }
 
-// MARK: - Table View Delegates & Protocols
+// MARK: - Table View Delegates
 extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle { .delete }
     
+    // MARK: Remove links
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         videoTableView.beginUpdates()
@@ -73,16 +77,18 @@ extension MainVC: UITableViewDelegate {
     
     // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playVideo(url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
+        playVideo(url: mainViewModel.getVideoURL(at: indexPath))
     }
 }
+
+// MARK: - Table view DataSource
 extension MainVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         mainViewModel.linksCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VideoCell", for: indexPath) as! VideoTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! VideoTableViewCell
         cell.viewModel = mainViewModel.viewModelForCell(indexPath)
         return cell
     }

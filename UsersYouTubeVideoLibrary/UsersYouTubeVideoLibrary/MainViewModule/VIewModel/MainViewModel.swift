@@ -25,7 +25,7 @@ protocol MainViewModelProtocol {
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
-    var service: LinkDataServiceProtocol!
+    private var service: LinkDataServiceProtocol!
     
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
@@ -57,6 +57,12 @@ class MainViewModel: MainViewModelProtocol {
     func removeLink(at indexPath: IndexPath) {
         let id = arrayOfLinks[indexPath.row].id
         service.removeLink(id: id)
+    }
+    
+    // MARK: - Get Video URL
+    func getVideoURL(at indexPath: IndexPath) -> String {
+        let url = arrayOfLinks[indexPath.row].urlString
+        return url
     }
     
     // MARK: - Bind to set-up Cell
