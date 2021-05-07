@@ -12,6 +12,7 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoLinkCellLabel: UILabel!
     @IBOutlet weak var videoLinkTitleLabel: UILabel!
     @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
+    @IBOutlet weak var viewForLabels: UIView!
     
     private var cellDescriptionHead = "URL:"
     
@@ -26,10 +27,11 @@ class VideoTableViewCell: UITableViewCell {
     // MARK: - Setup colors & cell corners
     func setupView() {
         videoLinkCellLabel.textColor = .blue
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 15
-        contentView.layer.borderWidth = 0.3
-        contentView.layer.borderColor = UIColor.black.cgColor
+        viewForLabels.layer.masksToBounds = true
+        viewForLabels.layer.cornerRadius = 15
+        viewForLabels.layer.borderWidth = 0.3
+        viewForLabels.layer.borderColor = UIColor.black.cgColor
+        viewForLabels.backgroundColor = .systemGray4
     }
     
     override func layoutSubviews() {
