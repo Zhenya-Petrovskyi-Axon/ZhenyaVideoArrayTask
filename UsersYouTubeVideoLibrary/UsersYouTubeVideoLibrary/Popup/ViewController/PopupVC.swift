@@ -19,7 +19,7 @@ class PopupVC: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    let popupViewModel = PopupViewModel()
+    private let popupViewModel = PopupViewModel()
     
     weak var delegate: PopupDelegate?
     
@@ -30,7 +30,6 @@ class PopupVC: UIViewController {
     
     // MARK: - Setup view
     func setupView() {
-        
         // MARK: - 3D effect for popup view
         mainPopupView.layer.shadowRadius = 5
         mainPopupView.layer.shadowColor = UIColor.black.cgColor
@@ -64,13 +63,14 @@ class PopupVC: UIViewController {
     
     // MARK: - Check & save data
     @IBAction func saveButtonAction(_ sender: UIButton) {
-        guard urlTextField.text != "" else {
+        guard urlTextField.text != "" || titleTextField.text != "" else {
+            showAlert(text: "Fill all fields, please")
             return
         }
         let url = urlTextField.text ?? "Some Link"
         let title = titleTextField.text ?? "Some Title"
         guard popupViewModel.isUrlValid(url: url) else {
-            // TODO: - Make an allert
+            showAlert(text: "URL you are trying to save is not valid for player")
             return
         }
         popupViewModel.saveLink(urlString: url, title: title)

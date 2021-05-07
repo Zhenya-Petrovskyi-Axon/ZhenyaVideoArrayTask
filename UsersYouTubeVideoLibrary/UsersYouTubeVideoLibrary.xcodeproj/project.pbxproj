@@ -125,7 +125,7 @@
 				453F3AF7263AB5A500648611 /* Model */,
 				45841FA426399765007A40D4 /* Cell's */,
 				45841F9726399064007A40D4 /* MainViewModule */,
-				458EB256263B307700768093 /* Popups */,
+				458EB256263B307700768093 /* Popup */,
 				45841F962639903E007A40D4 /* Storyboards */,
 				45841F952639902D007A40D4 /* MainAppDelegates */,
 				45841F8526398E49007A40D4 /* Assets.xcassets */,
@@ -170,13 +170,13 @@
 			path = "Cell's";
 			sourceTree = "<group>";
 		};
-		458EB256263B307700768093 /* Popups */ = {
+		458EB256263B307700768093 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
 				45F6C7D526433991007640E9 /* ViewController */,
 				45F6C7D426433983007640E9 /* ViewModel */,
 			);
-			path = Popups;
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		45DFC6EB2642877D00BF34DE /* Service */ = {
