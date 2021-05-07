@@ -12,7 +12,6 @@ class MainVC: UIViewController {
     @IBOutlet weak var videoTableView: UITableView!
     
     let mainViewModel = MainViewModel()
-    let videoPlayer = PlayerClass()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,18 +67,16 @@ extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             videoTableView.beginUpdates()
-            
             mainViewModel.service.removeLink(id: mainViewModel.arrayOfLinks[indexPath.row].id)
             mainViewModel.refresh()
             videoTableView.deleteRows(at: [indexPath], with: .fade)
-            
             videoTableView.endUpdates()
         }
     }
     
     // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        videoPlayer.playVideo(view: self, url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
+        playVideo(url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
     }
 }
 
