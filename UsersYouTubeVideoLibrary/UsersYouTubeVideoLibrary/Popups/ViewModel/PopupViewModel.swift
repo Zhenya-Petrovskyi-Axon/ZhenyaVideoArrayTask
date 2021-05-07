@@ -17,7 +17,10 @@ class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
     
-    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
+//    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
+    private let regexURLCondition = ".mp4"
+    
+//    http://www.commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -33,8 +36,9 @@ class PopupViewModel {
     
     // MARK: - URL Validation
     func isUrlValid(url: String?) -> Bool {
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
-        return predicate.evaluate(with: url)
+//        let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
+//        return predicate.evaluate(with: url)
+        return true
     }
     
 }
