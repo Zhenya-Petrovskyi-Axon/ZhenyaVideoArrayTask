@@ -18,52 +18,58 @@ protocol LinkDataServiceProtocol {
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
-    func refresh()
+    func getLinks()
+    func removeLink(at indexPath: IndexPath)
 }
 
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
-    var service: LinkDataServiceProtocol!
+    private var service: LinkDataServiceProtocol!
     
-    public var arrayOfLinks: [Link] = [] {
+    private(set) var arrayOfLinks: [Link] = [] {
         didSet {
-            self.didGetLinks()
-            print("arrayOfLinks did get updated with links from LinkCoreData")
+            didGetLinks()
         }
     }
     
     // MARK: - Array capacity counter
-    public var linksCount: Int {
-        return arrayOfLinks.count
-    }
+    public var linksCount: Int { arrayOfLinks.count }
+    
+    // MARK: - Bind data
+    var didGetLinks = { }
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         service = CoreDataLinkService(context: context)
-        
-        refresh()
+        getLinks()
     }
     
     // MARK: - Refresh view
-    func refresh() {
+    func getLinks() {
         service.getLinks { links in
             self.arrayOfLinks = links
         }
     }
     
-    // MARK: - Bind data
-    var didGetLinks: (() -> Void) = { }
+    // MARK: - Remove link data from LinkCoreData
+    func removeLink(at indexPath: IndexPath) {
+        let id = arrayOfLinks[indexPath.row].id
+        service.removeLink(id: id)
+    }
+    
+    // MARK: - Get Video URL
+    func getVideoURL(at indexPath: IndexPath) -> String {
+        let url = arrayOfLinks[indexPath.row].urlString
+        return url
+    }
     
     // MARK: - Bind to set-up Cell
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel {
-        
         let url = arrayOfLinks[indexPath.row].urlString
         let id = arrayOfLinks[indexPath.row].id
         let title = arrayOfLinks[indexPath.row].title
-        
         return CellViewModel(cellModel: CellModel(id: id, urlString: url, title: title))
     }
 }

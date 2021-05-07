@@ -12,27 +12,27 @@ class VideoTableViewCell: UITableViewCell {
     @IBOutlet weak var videoLinkCellLabel: UILabel!
     @IBOutlet weak var videoLinkTitleLabel: UILabel!
     @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
-    
-    private var cellDescriptionHead = "URL:"
+    @IBOutlet weak var viewForLabels: UIView!
     
     var viewModel: CellViewModel! {
         didSet {
             videoLinkTitleLabel.text = viewModel.cellModel.title
             videoLinkCellLabel.text = viewModel.cellModel.urlString
-            videoLinkCellDesriptionLabel.text = cellDescriptionHead
+            videoLinkCellDesriptionLabel.text = "URL:"
         }
     }
     
     // MARK: - Setup colors & cell corners
     func setupView() {
         videoLinkCellLabel.textColor = .blue
-        contentView.layer.masksToBounds = true
-        contentView.layer.cornerRadius = 15
-        contentView.layer.borderWidth = 0.3
-        contentView.layer.borderColor = UIColor.black.cgColor
+        viewForLabels.layer.masksToBounds = true
+        viewForLabels.layer.cornerRadius = 15
+        viewForLabels.layer.borderWidth = 0.3
+        viewForLabels.layer.borderColor = UIColor.systemYellow.cgColor
     }
     
-    override func layoutSubviews() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupView()
     }
 }

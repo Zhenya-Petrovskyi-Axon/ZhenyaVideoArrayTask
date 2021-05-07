@@ -17,12 +17,11 @@ class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
     
-    private let regexURLCondition = "(http(s)?:\\/\\/)?(www\\.|m\\.)?youtu(be\\.com|\\.be)(\\/watch\\?([&=a-z]{0,})(v=[\\d\\w]{1,}).+|\\/[\\d\\w]{1,})"
+    private let regexURLCondition = "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)"
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         service = CoreDataLinkService(context: context)
     }
     
