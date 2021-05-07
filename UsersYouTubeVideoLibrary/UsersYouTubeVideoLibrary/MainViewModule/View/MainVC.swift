@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainVC: UIViewController {
     
     @IBOutlet weak var videoTableView: UITableView!
     
     let mainViewModel = MainViewModel()
+    let videoPlayer = PlayerClass()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +76,10 @@ extension MainVC: UITableViewDelegate {
             
             videoTableView.endUpdates()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        videoPlayer.playVideo(view: self, url: mainViewModel.arrayOfLinks[indexPath.row].urlString)
     }
 }
 
