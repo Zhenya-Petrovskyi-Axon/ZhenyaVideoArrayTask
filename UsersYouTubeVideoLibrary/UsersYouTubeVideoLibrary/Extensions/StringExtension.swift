@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Check for empty text fields
 extension String {
     /// True if string contains only newlines or whitespaces, or is empty
     var isBlank: Bool { trimmed.isEmpty }

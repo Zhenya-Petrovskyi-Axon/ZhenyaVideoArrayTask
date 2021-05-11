@@ -64,5 +64,4 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         try context.save()
     }
     
-    
 }

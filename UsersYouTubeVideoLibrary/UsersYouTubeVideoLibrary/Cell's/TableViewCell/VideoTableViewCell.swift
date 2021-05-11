@@ -9,21 +9,20 @@ import UIKit
 
 class VideoTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var videoLinkCellLabel: UILabel!
+    @IBOutlet weak var urlTextLabel: UILabel!
     @IBOutlet weak var videoLinkTitleLabel: UILabel!
-    @IBOutlet weak var videoLinkCellDesriptionLabel: UILabel!
     @IBOutlet weak var viewForLabels: UIView!
     
     var viewModel: CellViewModel! {
         didSet {
             videoLinkTitleLabel.text = viewModel.cellModel.title
-            videoLinkCellLabel.text = viewModel.cellModel.urlString
+            urlTextLabel.text = viewModel.cellModel.urlString
         }
     }
     
     // MARK: - Setup colors & cell corners
     func setupView() {
-        videoLinkCellLabel.textColor = .blue
+        urlTextLabel.textColor = .blue
         viewForLabels.layer.masksToBounds = true
         viewForLabels.layer.cornerRadius = 15
         viewForLabels.layer.borderWidth = 0.3
