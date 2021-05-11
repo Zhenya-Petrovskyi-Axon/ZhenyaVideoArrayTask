@@ -55,7 +55,7 @@ class MainVC: UIViewController {
     
 }
 
-// MARK: - Delegate
+// MARK: - Update main view with new data when new user have been saved in PopupVC
 extension MainVC: PopupDelegate {
     func userDidSaveNewLink() {
         mainViewModel.getLinks()

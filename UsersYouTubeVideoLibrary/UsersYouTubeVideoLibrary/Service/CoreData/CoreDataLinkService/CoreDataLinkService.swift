@@ -8,12 +8,16 @@
 import UIKit
 import CoreData
 
+enum CoreDataError: Error {
+   case fetchingDataFailed
+}
+
 // MARK: - Main Coredata service
 class CoreDataLinkService: LinkDataServiceProtocol {
     
-    let entityName = "LinkCoreData"
-    
     private let context: NSManagedObjectContext!
+    
+    let entityName = "LinkCoreData"
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -30,11 +34,14 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     }
     
     // MARK: - Get links from core Data
-    func getLinks(completion: ([Link]) -> Void) throws {
+    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void) {
         let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
-        let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
-        try context.save()
-        completion(result)
+        if let result = try? context.fetch(fetchRequest).map({ Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }) {
+            completion(.success(result))
+        } else {
+            completion(.failure(.fetchingDataFailed))
+        }
+        
     }
     
     // MARK: - Remove links from core data
@@ -44,7 +51,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         let fetchedResults = try context.fetch(fetchRequest)
         for entity in fetchedResults {
             context?.delete(entity)
-            print(entity.urlString, "- is deleted from LinkCoreData")
+            print(entity.urlString, " - is deleted from LinkCoreData")
         }
         try context.save()
     }

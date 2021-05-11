@@ -16,7 +16,7 @@ protocol MainViewModelDelegate: AnyObject {
 // MARK: - Core data link service protocol
 protocol LinkDataServiceProtocol {
     func saveLink(urlString: String, title: String) throws
-    func getLinks(completion: ([Link]) -> Void) throws
+    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void)
     func removeLink(id: String) throws
 }
 
@@ -55,12 +55,13 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Refresh view
     func getLinks() {
-        do {
-            try service.getLinks { links in
+        service.getLinks { links in
+            switch links {
+            case .failure(let error):
+                delegate?.needToShowAnAllert(text: "Failed to get data from device due to  \(error.localizedDescription)")
+            case .success(let links):
                 self.arrayOfLinks = links
             }
-        } catch let error as NSError {
-            delegate?.needToShowAnAllert(text: "Sorry, unable to get array of links due to  \(error.localizedDescription)")
         }
     }
     
