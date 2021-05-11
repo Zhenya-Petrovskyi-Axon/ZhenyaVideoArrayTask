@@ -14,8 +14,8 @@ protocol MainViewModelDelegate: AnyObject {
 
 // Mark: - Core data link service protocol
 protocol LinkDataServiceProtocol {
-    func saveLink(urlString: String, title: String)
-    func getLinks(completion: ([Link]) -> Void)
+    func saveLink(urlString: String, title: String) throws
+    func getLinks(completion: ([Link]) -> Void) throws
     func removeLink(id: String)
 }
 
@@ -54,8 +54,12 @@ class MainViewModel: MainViewModelProtocol {
     
     // MARK: - Refresh view
     func getLinks() {
-        service.getLinks { links in
-            self.arrayOfLinks = links
+        do {
+            try service.getLinks { links in
+                self.arrayOfLinks = links
+            }
+        } catch let error {
+            delegate?.showAllert(text: "\(error.localizedDescription)")
         }
     }
     

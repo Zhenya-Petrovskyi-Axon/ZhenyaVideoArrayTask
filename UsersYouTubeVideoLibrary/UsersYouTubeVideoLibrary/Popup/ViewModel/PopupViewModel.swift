@@ -27,7 +27,13 @@ class PopupViewModel {
     
     // MARK: - Save link to core data & main array
     func saveLink(urlString: String, title: String) {
-        service.saveLink(urlString: urlString, title: title)
+        do {
+            try service.saveLink(urlString: urlString, title: title)
+        }
+        catch let error {
+            print(error)
+            // delegate.showAllert(text: "\(error)")
+        }
     }
     
     // MARK: - URL Validation
