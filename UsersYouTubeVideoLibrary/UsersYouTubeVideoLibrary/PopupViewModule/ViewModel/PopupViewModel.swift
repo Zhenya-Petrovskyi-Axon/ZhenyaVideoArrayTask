@@ -13,12 +13,11 @@ enum URLValidationError: Error {
 }
 
 protocol PopupViewModelProtocol {
-    var onError: (String) -> Void { get set }
-    func saveLink(urlString: String, title: String)
-    func isUrlValid(url: String?) -> Bool
+    func saveLink(urlString: String, title: String) throws
+    func isValid(_ url: String?) -> Bool
 }
 
-class PopupViewModel {
+class PopupViewModel: PopupViewModelProtocol {
     
     private let service: LinkDataServiceProtocol!
     

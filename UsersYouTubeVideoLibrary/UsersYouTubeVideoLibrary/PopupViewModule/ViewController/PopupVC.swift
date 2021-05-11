@@ -19,7 +19,7 @@ class PopupVC: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private let popupViewModel = PopupViewModel()
+    private var popupViewModel: PopupViewModelProtocol! = PopupViewModel()
     
     weak var delegate: PopupDelegate?
     

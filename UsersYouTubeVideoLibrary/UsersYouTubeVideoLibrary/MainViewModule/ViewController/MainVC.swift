@@ -14,7 +14,7 @@ class MainVC: UIViewController {
     private let cellID = "VideoCell"
     private let popupID = "PopupVC"
     
-    private var mainViewModel = MainViewModel()
+    private var mainViewModel: MainViewModelProtocol! = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
