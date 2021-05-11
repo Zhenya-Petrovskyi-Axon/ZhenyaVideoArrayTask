@@ -37,12 +37,20 @@ class PopupViewModel {
             try service.saveLink(urlString: urlString, title: title)
         }
         catch let error as NSError {
-            delegate.needToShowAnAllert(text: "\(error.localizedDescription)")
+            delegate.needToShowAnAllert(text: "Failed to save link due to \(error.localizedDescription)")
+        }
+    }
+    
+    // MARK: - If giving Url passes validation
+    func isUrlValid(url: String) {
+        if !validation(url) {
+            delegate.needToShowAnAllert(text: "Url didn't passed validation and not conformed to use with video player")
+            return
         }
     }
     
     // MARK: - URL Validation
-    func isUrlValid(url: String?) -> Bool {
+    func validation(_ url: String?) -> Bool {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
     }

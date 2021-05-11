@@ -75,10 +75,7 @@ class PopupVC: UIViewController {
         }
         let url = urlTextField.text ?? "Some Link"
         let title = titleTextField.text ?? "Some Title"
-        guard popupViewModel.isUrlValid(url: url) else {
-            showAlert(text: "URL you are trying to save is not valid for player")
-            return
-        }
+        popupViewModel.isUrlValid(url: url)
         popupViewModel.saveLink(urlString: url, title: title)
         self.dismiss(animated: false, completion: { [weak self] in
             self?.delegate?.userDidSaveNewLink()
