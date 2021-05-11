@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol PopupViewModelDelegate: AnyObject {
+    func needToShowAnAllert(text: String)
+}
+
 protocol PopupViewModelProtocol {
     func saveLink(urlString: String, title: String)
     func isUrlValid(url: String?) -> Bool
@@ -16,6 +20,8 @@ protocol PopupViewModelProtocol {
 class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
+    
+    weak var delegate: PopupViewModelDelegate!
     
     private let regexURLCondition = "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)"
     
@@ -30,9 +36,8 @@ class PopupViewModel {
         do {
             try service.saveLink(urlString: urlString, title: title)
         }
-        catch let error {
-            print(error)
-            // delegate.showAllert(text: "\(error)")
+        catch let error as NSError {
+            delegate.needToShowAnAllert(text: "\(error.localizedDescription)")
         }
     }
     

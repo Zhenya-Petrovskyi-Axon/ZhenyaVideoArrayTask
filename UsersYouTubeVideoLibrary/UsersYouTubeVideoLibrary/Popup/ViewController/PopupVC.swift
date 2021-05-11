@@ -52,6 +52,11 @@ class PopupVC: UIViewController {
             $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         }
         
+        // MARK: - Set up  delegate for popupViewModel
+        func setupDelegate() {
+            popupViewModel.delegate = self
+        }
+        
         // MARK: - Tap on screen to dissmiss popup
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
@@ -78,4 +83,12 @@ class PopupVC: UIViewController {
             self?.delegate?.userDidSaveNewLink()
         })
     }
+}
+
+extension PopupVC: PopupViewModelDelegate {
+    func needToShowAnAllert(text: String) {
+        showAlert(text: text)
+    }
+    
+    
 }

@@ -16,7 +16,7 @@ protocol MainViewModelDelegate: AnyObject {
 protocol LinkDataServiceProtocol {
     func saveLink(urlString: String, title: String) throws
     func getLinks(completion: ([Link]) -> Void) throws
-    func removeLink(id: String)
+    func removeLink(id: String) throws
 }
 
 // MARK: - Main protocols
@@ -58,7 +58,7 @@ class MainViewModel: MainViewModelProtocol {
             try service.getLinks { links in
                 self.arrayOfLinks = links
             }
-        } catch let error {
+        } catch let error as NSError {
             delegate?.showAllert(text: "\(error.localizedDescription)")
         }
     }
@@ -66,7 +66,11 @@ class MainViewModel: MainViewModelProtocol {
     // MARK: - Remove link data from LinkCoreData
     func removeLink(_ indexPath: IndexPath) {
         let id = arrayOfLinks[indexPath.row].id
-        service.removeLink(id: id)
+        do {
+            try service.removeLink(id: id)
+        } catch let error as NSError {
+            delegate?.showAllert(text: "\(error.localizedDescription)")
+        }
     }
     
     // MARK: - Get Video URL

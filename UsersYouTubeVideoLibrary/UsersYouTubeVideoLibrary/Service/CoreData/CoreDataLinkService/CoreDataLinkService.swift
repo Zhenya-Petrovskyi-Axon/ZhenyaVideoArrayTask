@@ -26,40 +26,27 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         url.setValue(urlString, forKeyPath: "urlString")
         url.setValue(title, forKey: "title")
         url.setValue(UUID().uuidString, forKey: "identifier")
-        do {
-            try context.save()
-            print("Success in saving \(urlString)")
-        } catch let error as NSError {
-            throw error
-        }
+        try context.save()
     }
     
     // MARK: - Get links from core Data
     func getLinks(completion: ([Link]) -> Void) throws {
         let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
-        do {
-            let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
-            try context.save()
-            completion(result)
-        } catch let error as NSError {
-            throw error
-        }
+        let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
+        try context.save()
+        completion(result)
     }
     
     // MARK: - Remove links from core data
-    func removeLink(id: String) {
+    func removeLink(id: String) throws {
         let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "identifier = %@", "\(id)")
-        do {
-            let fetchedResults = try context.fetch(fetchRequest)
-            for entity in fetchedResults {
-                context?.delete(entity)
-                print(entity.urlString, "- is deleted from LinkCoreData")
-            }
-            try context.save()
-        } catch let error as NSError {
-            print("Unable to delete with error - \(error.localizedDescription)")
+        let fetchedResults = try context.fetch(fetchRequest)
+        for entity in fetchedResults {
+            context?.delete(entity)
+            print(entity.urlString, "- is deleted from LinkCoreData")
         }
+        try context.save()
     }
     
     
