@@ -8,6 +8,10 @@
 import UIKit
 import CoreData
 
+protocol MainViewModelDelegate: AnyObject {
+    func showAllert(text: String)
+}
+
 // Mark: - Core data link service protocol
 protocol LinkDataServiceProtocol {
     func saveLink(urlString: String, title: String)
@@ -19,13 +23,15 @@ protocol LinkDataServiceProtocol {
 protocol MainViewModelProtocol {
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
     func getLinks()
-    func removeLink(at indexPath: IndexPath)
+    func removeLink(_ indexPath: IndexPath)
 }
 
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
     private var service: LinkDataServiceProtocol!
+    
+    weak var delegate: MainViewModelDelegate?
     
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
@@ -54,7 +60,7 @@ class MainViewModel: MainViewModelProtocol {
     }
     
     // MARK: - Remove link data from LinkCoreData
-    func removeLink(at indexPath: IndexPath) {
+    func removeLink(_ indexPath: IndexPath) {
         let id = arrayOfLinks[indexPath.row].id
         service.removeLink(id: id)
     }
@@ -70,6 +76,6 @@ class MainViewModel: MainViewModelProtocol {
         let url = arrayOfLinks[indexPath.row].urlString
         let id = arrayOfLinks[indexPath.row].id
         let title = arrayOfLinks[indexPath.row].title
-        return CellViewModel(cellModel: CellModel(id: id, urlString: url, title: title))
+        return CellViewModel(CellModel(id: id, urlString: url, title: title))
     }
 }

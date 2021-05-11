@@ -11,10 +11,10 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var videoTableView: UITableView!
     
-    let cellID = "VideoCell"
-    let popupID = "PopupVC"
+    private let cellID = "VideoCell"
+    private let popupID = "PopupVC"
     
-    let mainViewModel = MainViewModel()
+    private let mainViewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,7 @@ class MainVC: UIViewController {
     func setupDelegates() {
         videoTableView.delegate = self
         videoTableView.dataSource = self
+        self.mainViewModel.delegate = self
     }
     
     // MARK: - Binding with MainViewModel
@@ -69,7 +70,7 @@ extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         videoTableView.beginUpdates()
-        mainViewModel.removeLink(at: indexPath)
+        mainViewModel.removeLink(indexPath)
         mainViewModel.getLinks()
         videoTableView.deleteRows(at: [indexPath], with: .fade)
         videoTableView.endUpdates()
@@ -77,7 +78,7 @@ extension MainVC: UITableViewDelegate {
     
     // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playVideo(url: mainViewModel.getVideoURL(at: indexPath))
+        playVideo(mainViewModel.getVideoURL(at: indexPath))
     }
 }
 
@@ -91,5 +92,12 @@ extension MainVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! VideoTableViewCell
         cell.viewModel = mainViewModel.viewModelForCell(indexPath)
         return cell
+    }
+}
+
+// MARK: - Main View Model error handling will show allert to user
+extension MainVC: MainViewModelDelegate {
+    func showAllert(text: String) {
+        showAlert(text: text)
     }
 }
