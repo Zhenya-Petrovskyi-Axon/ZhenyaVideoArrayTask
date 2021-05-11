@@ -26,7 +26,6 @@ class PopupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupDelegate()
     }
     
     // MARK: - Setup view
@@ -57,11 +56,6 @@ class PopupVC: UIViewController {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
-    // MARK: - Set up  delegate for popupViewModel
-    func setupDelegate() {
-        popupViewModel.delegate = self
-    }
-    
     // MARK: - Dissmiss pop-up with tap on screen
     @objc func dismissView() {
         dismiss(animated: true, completion: nil)
@@ -69,24 +63,21 @@ class PopupVC: UIViewController {
     
     // MARK: - Check & save data
     @IBAction func saveButtonAction(_ sender: UIButton) {
-        guard urlTextField.text != "" || titleTextField.text != "" else {
-            showAlert(text: "Fill all fields, please")
+        guard let url = urlTextField.text,
+              let title = titleTextField.text,
+              !url.isBlank,
+              !title.isBlank
+        else {
+            showAlert(text: "Mark all fields first, please")
             return
         }
-        let url = urlTextField.text ?? "Some Link"
-        let title = titleTextField.text ?? "Some Title"
-        popupViewModel.isUrlValid(url: url)
-        popupViewModel.saveLink(urlString: url, title: title)
-        self.dismiss(animated: false, completion: { [weak self] in
-            self?.delegate?.userDidSaveNewLink()
-        })
+        do {
+            try popupViewModel.saveLink(urlString: url, title: title)
+            self.dismiss(animated: false, completion: { [weak self] in
+                self?.delegate?.userDidSaveNewLink()
+            })
+        } catch let error {
+            self.showAlert(text: "\(error)")
+        }
     }
-}
-
-extension PopupVC: PopupViewModelDelegate {
-    func needToShowAnAllert(text: String) {
-        showAlert(text: text)
-    }
-    
-    
 }

@@ -8,11 +8,12 @@
 import UIKit
 import CoreData
 
-protocol PopupViewModelDelegate: AnyObject {
-    func needToShowAnAllert(text: String)
+enum URLValidationError: Error {
+    case urlIsNotValid
 }
 
 protocol PopupViewModelProtocol {
+    var onError: (String) -> Void { get set }
     func saveLink(urlString: String, title: String)
     func isUrlValid(url: String?) -> Bool
 }
@@ -20,8 +21,6 @@ protocol PopupViewModelProtocol {
 class PopupViewModel {
     
     private let service: LinkDataServiceProtocol!
-    
-    weak var delegate: PopupViewModelDelegate!
     
     private let regexURLCondition = "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)"
     
@@ -32,25 +31,15 @@ class PopupViewModel {
     }
     
     // MARK: - Save link to core data & main array
-    func saveLink(urlString: String, title: String) {
-        do {
-            try service.saveLink(urlString: urlString, title: title)
+    func saveLink(urlString: String, title: String) throws {
+        guard isValid(urlString) else {
+            throw URLValidationError.urlIsNotValid
         }
-        catch let error as NSError {
-            delegate.needToShowAnAllert(text: "Failed to save link due to \(error.localizedDescription)")
-        }
-    }
-    
-    // MARK: - If giving Url passes validation
-    func isUrlValid(url: String) {
-        if !validation(url) {
-            delegate.needToShowAnAllert(text: "Url didn't passed validation and not conformed to use with video player")
-            return
-        }
+        try service.saveLink(urlString: urlString, title: title)
     }
     
     // MARK: - URL Validation
-    func validation(_ url: String?) -> Bool {
+    func isValid(_ url: String?) -> Bool {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
     }

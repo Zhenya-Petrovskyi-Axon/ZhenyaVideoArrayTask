@@ -9,7 +9,14 @@ import UIKit
 import CoreData
 
 enum CoreDataError: Error {
-   case fetchingDataFailed
+    case fetchingDataFailed
+}
+
+// MARK: - Core data link service protocol
+protocol LinkDataServiceProtocol {
+    func saveLink(urlString: String, title: String) throws
+    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void)
+    func removeLink(id: String) throws
 }
 
 // MARK: - Main Coredata service
@@ -17,7 +24,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
     
-    let entityName = "LinkCoreData"
+    private let entityName = "LinkCoreData"
     
     init(context: NSManagedObjectContext) {
         self.context = context
@@ -36,9 +43,10 @@ class CoreDataLinkService: LinkDataServiceProtocol {
     // MARK: - Get links from core Data
     func getLinks(completion: (Result<[Link], CoreDataError>) -> Void) {
         let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
-        if let result = try? context.fetch(fetchRequest).map({ Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }) {
+        do {
+            let result = try context.fetch(fetchRequest).map ({ Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) })
             completion(.success(result))
-        } else {
+        } catch {
             completion(.failure(.fetchingDataFailed))
         }
         

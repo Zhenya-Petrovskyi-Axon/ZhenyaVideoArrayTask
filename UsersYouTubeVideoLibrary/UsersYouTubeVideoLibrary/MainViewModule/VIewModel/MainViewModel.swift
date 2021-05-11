@@ -8,31 +8,21 @@
 import UIKit
 import CoreData
 
-// MARK: - Show allert of handled errors to user
-protocol MainViewModelDelegate: AnyObject {
-    func needToShowAnAllert(text: String)
-}
-
-// MARK: - Core data link service protocol
-protocol LinkDataServiceProtocol {
-    func saveLink(urlString: String, title: String) throws
-    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void)
-    func removeLink(id: String) throws
-}
-
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
+    var onError: (String) -> Void { get set }
+    var linksCount: Int { get }
+    var didGetLinks: () -> Void { get set }
     func viewModelForCell(_ indexPath: IndexPath) -> CellViewModel
     func getLinks()
     func removeLink(_ indexPath: IndexPath)
+    func videoUrl(at indexPath: IndexPath) -> String
 }
 
 // MARK: - MainVC Model
 class MainViewModel: MainViewModelProtocol {
     
     private var service: LinkDataServiceProtocol!
-    
-    weak var delegate: MainViewModelDelegate?
     
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
@@ -41,10 +31,13 @@ class MainViewModel: MainViewModelProtocol {
     }
     
     // MARK: - Array capacity counter
-    public var linksCount: Int { arrayOfLinks.count }
+    var linksCount: Int { arrayOfLinks.count }
     
     // MARK: - Bind data
     var didGetLinks = { }
+    
+    // MARK: - Use to show an alert description
+    var onError: (String) -> Void = { _ in }
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -58,7 +51,7 @@ class MainViewModel: MainViewModelProtocol {
         service.getLinks { links in
             switch links {
             case .failure(let error):
-                delegate?.needToShowAnAllert(text: "Failed to get data from device due to  \(error.localizedDescription)")
+                onError("Failed to fetch link's due to \(error.localizedDescription)")
             case .success(let links):
                 self.arrayOfLinks = links
             }
@@ -71,12 +64,12 @@ class MainViewModel: MainViewModelProtocol {
         do {
             try service.removeLink(id: id)
         } catch let error as NSError {
-            delegate?.needToShowAnAllert(text: "Sorry, unable to remove link due to \(error.localizedDescription)")
+            onError("Failed to remove link due to \(error.localizedDescription)")
         }
     }
     
     // MARK: - Get Video URL
-    func getVideoURL(at indexPath: IndexPath) -> String {
+    func videoUrl(at indexPath: IndexPath) -> String {
         let url = arrayOfLinks[indexPath.row].urlString
         return url
     }

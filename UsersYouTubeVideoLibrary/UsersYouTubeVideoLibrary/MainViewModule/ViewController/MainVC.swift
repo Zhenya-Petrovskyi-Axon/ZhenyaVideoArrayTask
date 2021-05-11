@@ -14,19 +14,26 @@ class MainVC: UIViewController {
     private let cellID = "VideoCell"
     private let popupID = "PopupVC"
     
-    private let mainViewModel = MainViewModel()
+    private var mainViewModel = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
         setupDelegates()
+        setupCompletions()
+    }
+    
+    // MARK: - Setup completions for allert
+    func setupCompletions() {
+        mainViewModel.onError = { [weak self] error in
+            self?.showAlert(text: error)
+        }
     }
     
     // MARK: - Setup tableView delegates
     func setupDelegates() {
         videoTableView.delegate = self
         videoTableView.dataSource = self
-        self.mainViewModel.delegate = self
     }
     
     // MARK: - Binding with MainViewModel
@@ -78,7 +85,7 @@ extension MainVC: UITableViewDelegate {
     
     // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playVideo(mainViewModel.getVideoURL(at: indexPath))
+        playVideo(mainViewModel.videoUrl(at: indexPath))
     }
 }
 
@@ -92,12 +99,5 @@ extension MainVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! VideoTableViewCell
         cell.viewModel = mainViewModel.viewModelForCell(indexPath)
         return cell
-    }
-}
-
-// MARK: - Main View Model error handling will show allert to user
-extension MainVC: MainViewModelDelegate {
-    func needToShowAnAllert(text: String) {
-        showAlert(text: text)
     }
 }
