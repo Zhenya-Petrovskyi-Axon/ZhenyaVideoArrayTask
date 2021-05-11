@@ -8,56 +8,60 @@
 import UIKit
 import CoreData
 
+enum CoreDataError: Error {
+    case fetchingDataFailed
+}
+
+// MARK: - Core data link service protocol
+protocol LinkDataServiceProtocol {
+    func saveLink(urlString: String, title: String) throws
+    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void)
+    func removeLink(id: String) throws
+}
+
 // MARK: - Main Coredata service
 class CoreDataLinkService: LinkDataServiceProtocol {
     
     private let context: NSManagedObjectContext!
+    
+    private let entityName = "LinkCoreData"
     
     init(context: NSManagedObjectContext) {
         self.context = context
     }
     
     // MARK: - Save link to core data
-    func saveLink(urlString: String, title: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "LinkCoreData", in: context)!
+    func saveLink(urlString: String, title: String) throws {
+        let entity = NSEntityDescription.entity(forEntityName: entityName, in: context)!
         let url = NSManagedObject(entity: entity, insertInto: context)
         url.setValue(urlString, forKeyPath: "urlString")
         url.setValue(title, forKey: "title")
         url.setValue(UUID().uuidString, forKey: "identifier")
-        do {
-            try context.save()
-            print("Success in saving \(urlString)")
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        try context.save()
     }
     
     // MARK: - Get links from core Data
-    func getLinks(completion: ([Link]) -> Void) {
-        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: "LinkCoreData")
+    func getLinks(completion: (Result<[Link], CoreDataError>) -> Void) {
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
         do {
-            let result = try context.fetch(fetchRequest).map { Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) }
-            try context.save()
-            completion(result)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            let result = try context.fetch(fetchRequest).map ({ Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) })
+            completion(.success(result))
+        } catch {
+            completion(.failure(.fetchingDataFailed))
         }
+        
     }
     
     // MARK: - Remove links from core data
-    func removeLink(id: String) {
-        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName:"LinkCoreData")
+    func removeLink(id: String) throws {
+        let fetchRequest = NSFetchRequest<LinkCoreData>(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "identifier = %@", "\(id)")
-        do {
-            let fetchedResults = try context.fetch(fetchRequest)
-            for entity in fetchedResults {
-                context?.delete(entity)
-                print(entity.urlString, "- is deleted from LinkCoreData")
-            }
-            try context.save()
-        } catch let error as NSError {
-            print("Unable to delete with error - \(error.localizedDescription)")
+        let fetchedResults = try context.fetch(fetchRequest)
+        for entity in fetchedResults {
+            context?.delete(entity)
+            print(entity.urlString, " - is deleted from LinkCoreData")
         }
+        try context.save()
     }
     
     

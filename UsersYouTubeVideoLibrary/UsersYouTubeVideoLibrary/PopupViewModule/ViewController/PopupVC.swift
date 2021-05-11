@@ -19,7 +19,7 @@ class PopupVC: UIViewController {
     @IBOutlet weak var urlTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     
-    private let popupViewModel = PopupViewModel()
+    private var popupViewModel: PopupViewModelProtocol! = PopupViewModel()
     
     weak var delegate: PopupDelegate?
     
@@ -63,19 +63,21 @@ class PopupVC: UIViewController {
     
     // MARK: - Check & save data
     @IBAction func saveButtonAction(_ sender: UIButton) {
-        guard urlTextField.text != "" || titleTextField.text != "" else {
-            showAlert(text: "Fill all fields, please")
+        guard let url = urlTextField.text,
+              let title = titleTextField.text,
+              !url.isBlank,
+              !title.isBlank
+        else {
+            showAlert(text: "Mark all fields first, please")
             return
         }
-        let url = urlTextField.text ?? "Some Link"
-        let title = titleTextField.text ?? "Some Title"
-        guard popupViewModel.isUrlValid(url: url) else {
-            showAlert(text: "URL you are trying to save is not valid for player")
-            return
+        do {
+            try popupViewModel.saveLink(urlString: url, title: title)
+            self.dismiss(animated: false, completion: { [weak self] in
+                self?.delegate?.userDidSaveNewLink()
+            })
+        } catch let error {
+            self.showAlert(text: "\(error)")
         }
-        popupViewModel.saveLink(urlString: url, title: title)
-        self.dismiss(animated: false, completion: { [weak self] in
-            self?.delegate?.userDidSaveNewLink()
-        })
     }
 }

@@ -11,15 +11,23 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var videoTableView: UITableView!
     
-    let cellID = "VideoCell"
-    let popupID = "PopupVC"
+    private let cellID = "VideoCell"
+    private let popupID = "PopupVC"
     
-    let mainViewModel = MainViewModel()
+    private var mainViewModel: MainViewModelProtocol! = MainViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
         setupDelegates()
+        setupCompletions()
+    }
+    
+    // MARK: - Setup completions for allert
+    func setupCompletions() {
+        mainViewModel.onError = { [weak self] error in
+            self?.showAlert(text: error)
+        }
     }
     
     // MARK: - Setup tableView delegates
@@ -45,7 +53,7 @@ class MainVC: UIViewController {
     // MARK: - Show popup to add new links
     @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: popupID) as! PopupVC
+        guard let vc = storyboard.instantiateViewController(withIdentifier: popupID) as? PopupVC else { return }
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
@@ -54,7 +62,7 @@ class MainVC: UIViewController {
     
 }
 
-// MARK: - Delegate
+// MARK: - Update main view with new data when new user have been saved in PopupVC
 extension MainVC: PopupDelegate {
     func userDidSaveNewLink() {
         mainViewModel.getLinks()
@@ -69,7 +77,7 @@ extension MainVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         videoTableView.beginUpdates()
-        mainViewModel.removeLink(at: indexPath)
+        mainViewModel.removeLink(indexPath)
         mainViewModel.getLinks()
         videoTableView.deleteRows(at: [indexPath], with: .fade)
         videoTableView.endUpdates()
@@ -77,7 +85,7 @@ extension MainVC: UITableViewDelegate {
     
     // MARK: Play video from selected row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        playVideo(url: mainViewModel.getVideoURL(at: indexPath))
+        playVideo(mainViewModel.videoUrl(at: indexPath))
     }
 }
 

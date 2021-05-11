@@ -16,7 +16,7 @@ struct CellModel {
 
 class CellViewModel {
     let cellModel: CellModel
-    init(cellModel: CellModel) {
+    init(_ cellModel: CellModel) {
         self.cellModel = cellModel
     }
 }

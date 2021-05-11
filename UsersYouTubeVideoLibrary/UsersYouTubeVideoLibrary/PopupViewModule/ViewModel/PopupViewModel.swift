@@ -8,12 +8,16 @@
 import UIKit
 import CoreData
 
-protocol PopupViewModelProtocol {
-    func saveLink(urlString: String, title: String)
-    func isUrlValid(url: String?) -> Bool
+enum URLValidationError: Error {
+    case urlIsNotValid
 }
 
-class PopupViewModel {
+protocol PopupViewModelProtocol {
+    func saveLink(urlString: String, title: String) throws
+    func isValid(_ url: String?) -> Bool
+}
+
+class PopupViewModel: PopupViewModelProtocol {
     
     private let service: LinkDataServiceProtocol!
     
@@ -26,12 +30,15 @@ class PopupViewModel {
     }
     
     // MARK: - Save link to core data & main array
-    func saveLink(urlString: String, title: String) {
-        service.saveLink(urlString: urlString, title: title)
+    func saveLink(urlString: String, title: String) throws {
+        guard isValid(urlString) else {
+            throw URLValidationError.urlIsNotValid
+        }
+        try service.saveLink(urlString: urlString, title: title)
     }
     
     // MARK: - URL Validation
-    func isUrlValid(url: String?) -> Bool {
+    func isValid(_ url: String?) -> Bool {
         let predicate = NSPredicate(format:"SELF MATCHES %@", regexURLCondition)
         return predicate.evaluate(with: url)
     }
