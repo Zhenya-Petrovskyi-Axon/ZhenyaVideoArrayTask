@@ -26,6 +26,7 @@ class PopupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupDelegate()
     }
     
     // MARK: - Setup view
@@ -52,13 +53,13 @@ class PopupVC: UIViewController {
             $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         }
         
-        // MARK: - Set up  delegate for popupViewModel
-        func setupDelegate() {
-            popupViewModel.delegate = self
-        }
-        
         // MARK: - Tap on screen to dissmiss popup
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+    }
+    
+    // MARK: - Set up  delegate for popupViewModel
+    func setupDelegate() {
+        popupViewModel.delegate = self
     }
     
     // MARK: - Dissmiss pop-up with tap on screen

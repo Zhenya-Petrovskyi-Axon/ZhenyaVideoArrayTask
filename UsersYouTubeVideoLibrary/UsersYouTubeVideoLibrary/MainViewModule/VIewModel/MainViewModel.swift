@@ -8,11 +8,12 @@
 import UIKit
 import CoreData
 
+// MARK: - Show allert of handled errors to user
 protocol MainViewModelDelegate: AnyObject {
-    func showAllert(text: String)
+    func needToShowAnAllert(text: String)
 }
 
-// Mark: - Core data link service protocol
+// MARK: - Core data link service protocol
 protocol LinkDataServiceProtocol {
     func saveLink(urlString: String, title: String) throws
     func getLinks(completion: ([Link]) -> Void) throws
@@ -59,7 +60,7 @@ class MainViewModel: MainViewModelProtocol {
                 self.arrayOfLinks = links
             }
         } catch let error as NSError {
-            delegate?.showAllert(text: "\(error.localizedDescription)")
+            delegate?.needToShowAnAllert(text: "Sorry, unable to get array of links due to  \(error.localizedDescription)")
         }
     }
     
@@ -69,7 +70,7 @@ class MainViewModel: MainViewModelProtocol {
         do {
             try service.removeLink(id: id)
         } catch let error as NSError {
-            delegate?.showAllert(text: "\(error.localizedDescription)")
+            delegate?.needToShowAnAllert(text: "Sorry, unable to remove link due to \(error.localizedDescription)")
         }
     }
     

@@ -97,7 +97,7 @@ extension MainVC: UITableViewDataSource {
 
 // MARK: - Main View Model error handling will show allert to user
 extension MainVC: MainViewModelDelegate {
-    func showAllert(text: String) {
+    func needToShowAnAllert(text: String) {
         showAlert(text: text)
     }
 }
