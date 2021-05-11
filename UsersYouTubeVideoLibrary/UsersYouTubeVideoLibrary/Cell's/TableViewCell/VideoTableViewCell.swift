@@ -18,7 +18,6 @@ class VideoTableViewCell: UITableViewCell {
         didSet {
             videoLinkTitleLabel.text = viewModel.cellModel.title
             videoLinkCellLabel.text = viewModel.cellModel.urlString
-            videoLinkCellDesriptionLabel.text = "URL:"
         }
     }
     

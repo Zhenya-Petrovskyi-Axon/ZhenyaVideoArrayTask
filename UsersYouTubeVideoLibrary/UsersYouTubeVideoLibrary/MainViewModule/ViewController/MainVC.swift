@@ -53,7 +53,7 @@ class MainVC: UIViewController {
     // MARK: - Show popup to add new links
     @IBAction func showPopupButtonAction(_ sender: UIBarButtonItem) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: popupID) as! PopupVC
+        guard let vc = storyboard.instantiateViewController(withIdentifier: popupID) as? PopupVC else { return }
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve

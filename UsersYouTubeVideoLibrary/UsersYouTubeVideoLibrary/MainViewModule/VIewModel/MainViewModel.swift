@@ -63,7 +63,7 @@ class MainViewModel: MainViewModelProtocol {
         let id = arrayOfLinks[indexPath.row].id
         do {
             try service.removeLink(id: id)
-        } catch let error as NSError {
+        } catch let error {
             onError("Failed to remove link due to \(error.localizedDescription)")
         }
     }

@@ -30,26 +30,17 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-HY-M8S">
                                                     <rect key="frame" x="6" y="2" width="402" height="76"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sH7-Ga-lOO">
-                                                            <rect key="frame" x="8" y="28" width="42" height="20.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="42" placeholder="YES" id="HzK-E0-9be"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-wx-VEV">
-                                                            <rect key="frame" x="52" y="11.5" width="347" height="53"/>
+                                                            <rect key="frame" x="15" y="11.5" width="384" height="53"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-qf-cXF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="347" height="28"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="384" height="28"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
-                                                                    <rect key="frame" x="0.0" y="43" width="347" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="43" width="384" height="10"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -60,11 +51,9 @@
                                                     <color key="backgroundColor" red="0.98039215690000003" green="0.94901960780000005" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Mo0-wx-VEV" firstAttribute="centerY" secondItem="yZy-HY-M8S" secondAttribute="centerY" id="Him-C7-sPJ"/>
+                                                        <constraint firstItem="Mo0-wx-VEV" firstAttribute="leading" secondItem="yZy-HY-M8S" secondAttribute="leading" constant="15" id="OV2-NC-5J4"/>
                                                         <constraint firstItem="Mo0-wx-VEV" firstAttribute="top" secondItem="yZy-HY-M8S" secondAttribute="top" constant="11.5" id="Z6B-YF-lGy"/>
                                                         <constraint firstAttribute="bottom" secondItem="Mo0-wx-VEV" secondAttribute="bottom" constant="11.5" id="ZIf-IV-cC9"/>
-                                                        <constraint firstItem="Mo0-wx-VEV" firstAttribute="leading" secondItem="sH7-Ga-lOO" secondAttribute="trailing" constant="2" id="s2L-YT-ea7"/>
-                                                        <constraint firstItem="sH7-Ga-lOO" firstAttribute="leading" secondItem="yZy-HY-M8S" secondAttribute="leading" constant="8" id="tGS-27-LO3"/>
-                                                        <constraint firstItem="sH7-Ga-lOO" firstAttribute="centerY" secondItem="yZy-HY-M8S" secondAttribute="centerY" id="yqA-zF-PKe"/>
                                                         <constraint firstAttribute="trailing" secondItem="Mo0-wx-VEV" secondAttribute="trailing" constant="3" id="zhG-j9-Hk2"/>
                                                     </constraints>
                                                 </view>
@@ -78,7 +67,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="videoLinkCellDesriptionLabel" destination="sH7-Ga-lOO" id="sdd-Pr-4fW"/>
                                             <outlet property="videoLinkCellLabel" destination="soi-6M-yZG" id="6IG-wn-I6t"/>
                                             <outlet property="videoLinkTitleLabel" destination="bNv-qf-cXF" id="HsO-3d-Ao3"/>
                                             <outlet property="viewForLabels" destination="yZy-HY-M8S" id="URI-vM-uRU"/>
@@ -97,7 +85,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="I like this Video's" id="el1-rL-U24">
-                        <barButtonItem key="rightBarButtonItem" width="100" systemItem="add" id="tLv-P8-eFm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="tLv-P8-eFm">
                             <inset key="largeContentSizeImageInsets" minX="0.0" minY="100" maxX="0.0" maxY="100"/>
                             <connections>
                                 <action selector="showPopupButtonAction:" destination="BYZ-38-t0r" id="78E-DX-sTi"/>
@@ -208,6 +196,9 @@
                         <color key="barTintColor" red="0.55686274509803924" green="0.59215686274509804" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BsK-9U-iuu">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="kxH-Hp-7l5"/>
                     </connections>
