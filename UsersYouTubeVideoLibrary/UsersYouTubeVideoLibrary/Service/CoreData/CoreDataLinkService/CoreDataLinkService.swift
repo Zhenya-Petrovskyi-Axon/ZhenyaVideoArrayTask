@@ -49,7 +49,6 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         } catch {
             completion(.failure(CoreDataError.fetchingDataFailed))
         }
-        
     }
     
     // MARK: - Remove links from core data
