@@ -77,7 +77,12 @@ class PopupVC: UIViewController {
                 self?.delegate?.userDidSaveNewLink()
             })
         } catch let error {
-            self.showAlert(text: "\(error)")
+            switch error {
+            case URLValidationError.urlIsNotValid:
+                showAlert(text: "Url you are trying to save is not valid")
+            default:
+                showAlert(text: "System error, can't save url")
+            }
         }
     }
 }

@@ -47,7 +47,7 @@ class CoreDataLinkService: LinkDataServiceProtocol {
             let result = try context.fetch(fetchRequest).map ({ Link(id: $0.identifier, urlString: $0.urlString, title: $0.title) })
             completion(.success(result))
         } catch {
-            completion(.failure(.fetchingDataFailed))
+            completion(.failure(CoreDataError.fetchingDataFailed))
         }
         
     }
