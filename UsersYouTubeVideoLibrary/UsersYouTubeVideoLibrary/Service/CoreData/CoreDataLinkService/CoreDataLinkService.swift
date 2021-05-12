@@ -59,7 +59,6 @@ class CoreDataLinkService: LinkDataServiceProtocol {
         let fetchedResults = try context.fetch(fetchRequest)
         for entity in fetchedResults {
             context?.delete(entity)
-            print(entity.urlString, " - is deleted from LinkCoreData")
         }
         try context.save()
     }

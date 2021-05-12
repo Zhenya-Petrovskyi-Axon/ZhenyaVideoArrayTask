@@ -51,7 +51,10 @@ class MainViewModel: MainViewModelProtocol {
         service.getLinks { links in
             switch links {
             case .failure(let error):
-                onError("Failed to fetch link's due to \(error.localizedDescription)")
+                switch error {
+                case .fetchingDataFailed:
+                    onError("Failed to fetch link's")
+                }
             case .success(let links):
                 self.arrayOfLinks = links
             }
