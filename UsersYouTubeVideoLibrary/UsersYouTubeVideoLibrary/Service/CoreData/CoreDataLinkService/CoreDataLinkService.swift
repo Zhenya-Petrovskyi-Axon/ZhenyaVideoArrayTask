@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+/// Custom errors
 enum CoreDataError: Error {
     case fetchingDataFailed
 }
