@@ -26,8 +26,8 @@ class MainViewModel: MainViewModelProtocol {
     
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
-            arrayOfLinks.sort(by: { $0.title < $1.title })
             didGetLinks()
+            sortLinks()
         }
     }
     
@@ -45,6 +45,11 @@ class MainViewModel: MainViewModelProtocol {
         let context = appDelegate.persistentContainer.viewContext
         service = CoreDataLinkService(context: context)
         getLinks()
+    }
+    
+    // MARK: - Sort links in alphabetical order
+    func sortLinks() {
+        arrayOfLinks.sort(by: { $0.title < $1.title })
     }
     
     // MARK: - Refresh view
