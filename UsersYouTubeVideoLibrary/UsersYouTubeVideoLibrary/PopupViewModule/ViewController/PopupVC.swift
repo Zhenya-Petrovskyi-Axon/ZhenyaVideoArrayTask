@@ -23,7 +23,7 @@ class PopupVC: UIViewController {
     
     weak var delegate: PopupDelegate?
     
-    private let titleMaxLenght = 20
+    private let titleMaxLenght = 30
     private let urlMaxLenght = 150
     
     override func viewDidLoad() {
@@ -48,12 +48,12 @@ class PopupVC: UIViewController {
     // MARK: - Set up popupView
     func setupPopupView() {
         // MARK: - Basic setup of view
-        mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         mainPopupView.layer.masksToBounds = true
+        mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
         mainPopupView.layer.cornerRadius = 20
         mainPopupView.layer.borderWidth = 1
         mainPopupView.layer.borderColor = UIColor.white.cgColor
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     // MARK: - Oval corners for text fields
     func setTextFieldCorners() {
@@ -68,8 +68,8 @@ class PopupVC: UIViewController {
     // MARK: - 3D effect for popup view
     func setupViewEffect() {
         mainPopupView.layer.shadowRadius = 5
-        mainPopupView.layer.shadowColor = UIColor.black.cgColor
         mainPopupView.layer.shadowOpacity = 0.6
+        mainPopupView.layer.shadowColor = UIColor.black.cgColor
         mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
@@ -129,7 +129,7 @@ extension PopupVC: UITextFieldDelegate {
             let count = textFieldText.count - substringToReplace.count + string.count
             return count <= urlMaxLenght
         default:
-            return true
+            return false
         }
     }
 }
