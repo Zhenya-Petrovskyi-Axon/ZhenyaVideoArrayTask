@@ -32,14 +32,6 @@ class PopupVC: UIViewController {
         textFieldMaxLenght()
     }
     
-    // MARK: - Set maximum lenght for textField
-    func textFieldMaxLenght() {
-        [titleTextField, urlTextField].forEach {
-            $0?.delegate = self
-            $0?.smartInsertDeleteType = UITextSmartInsertDeleteType.no
-        }
-    }
-    
     // MARK: - Setup view
     func setupMainView() {
         setTextFieldCorners()
@@ -79,6 +71,14 @@ class PopupVC: UIViewController {
         mainPopupView.layer.shadowColor = UIColor.black.cgColor
         mainPopupView.layer.shadowOpacity = 0.6
         mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
+    }
+    
+    // MARK: - Set maximum lenght for textField
+    func textFieldMaxLenght() {
+        [titleTextField, urlTextField].forEach {
+            $0?.delegate = self
+            $0?.smartInsertDeleteType = UITextSmartInsertDeleteType.no
+        }
     }
     
     // MARK: - Dissmiss pop-up with tap on screen
