@@ -46,11 +46,6 @@ class MainViewModel: MainViewModelProtocol {
         getLinks()
     }
     
-    // MARK: - Sort links in alphabetical order
-    func sortLinks() {
-        arrayOfLinks.sort(by: { $0.title < $1.title })
-    }
-    
     // MARK: - Refresh view
     func getLinks() {
         service.getLinks { links in
@@ -89,5 +84,10 @@ class MainViewModel: MainViewModelProtocol {
         let id = arrayOfLinks[indexPath.row].id
         let title = arrayOfLinks[indexPath.row].title
         return CellViewModel(CellModel(id: id, urlString: url, title: title))
+    }
+    
+    // MARK: - Sort links in alphabetical order
+    func sortLinks() {
+        arrayOfLinks.sort(by: { $0.title < $1.title })
     }
 }
