@@ -28,7 +28,7 @@ class PopupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupMainView()
         textFieldMaxLenght()
     }
     
@@ -41,13 +41,20 @@ class PopupVC: UIViewController {
     }
     
     // MARK: - Setup view
-    func setupView() {
-        // MARK: - 3D effect for popup view
-        mainPopupView.layer.shadowRadius = 5
-        mainPopupView.layer.shadowColor = UIColor.black.cgColor
-        mainPopupView.layer.shadowOpacity = 0.6
-        mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
-        
+    func setupMainView() {
+        setTextFieldCorners()
+        setupViewEffect()
+        setupPopupView()
+        dissmissRecogniser()
+    }
+    
+    // MARK: - Dissmiss popup on screen tap
+    func dissmissRecogniser() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+    }
+    
+    // MARK: - Set up popupView
+    func setupPopupView() {
         // MARK: - Basic setup of view
         mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
         mainPopupView.layer.masksToBounds = true
@@ -55,17 +62,23 @@ class PopupVC: UIViewController {
         mainPopupView.layer.borderWidth = 1
         mainPopupView.layer.borderColor = UIColor.white.cgColor
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        
-        // MARK: - Text fields setup
+    }
+    // MARK: - Oval corners for text fields
+    func setTextFieldCorners() {
         [titleTextField, urlTextField].forEach {
             $0?.layer.masksToBounds = true
             $0?.layer.cornerRadius = 10
             $0?.layer.borderWidth = 0.3
             $0?.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         }
-        
-        // MARK: - Tap on screen to dissmiss popup
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
+    }
+    
+    // MARK: - 3D effect for popup view
+    func setupViewEffect() {
+        mainPopupView.layer.shadowRadius = 5
+        mainPopupView.layer.shadowColor = UIColor.black.cgColor
+        mainPopupView.layer.shadowOpacity = 0.6
+        mainPopupView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
     // MARK: - Dissmiss pop-up with tap on screen
