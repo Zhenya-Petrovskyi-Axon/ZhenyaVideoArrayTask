@@ -49,7 +49,6 @@ class PopupVC: UIViewController {
     func setupPopupView() {
         // MARK: - Basic setup of view
         view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        mainPopupView.layer.masksToBounds = true
         mainPopupView.backgroundColor = .systemGray4.withAlphaComponent(0.9)
         mainPopupView.layer.cornerRadius = 20
         mainPopupView.layer.borderWidth = 1
