@@ -8,6 +8,7 @@
 import UIKit
 import AVKit
 
+// MARK: - Use with all UIVIewController Extensions needed
 extension UIViewController {
     func playVideo(_ url: String) {
         guard let urlToPlay = URL(string: url) else {
