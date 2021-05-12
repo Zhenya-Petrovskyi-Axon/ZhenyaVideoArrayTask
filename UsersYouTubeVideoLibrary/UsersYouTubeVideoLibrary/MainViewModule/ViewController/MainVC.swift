@@ -18,9 +18,15 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFooterView()
         setupBindings()
         setupDelegates()
         setupCompletions()
+    }
+    
+    // MARK: - Setup footer view
+    func setupFooterView() {
+        videoTableView.tableFooterView = UIView()
     }
     
     // MARK: - Setup completions for allert
