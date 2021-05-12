@@ -26,13 +26,15 @@ class PopupVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        titleTextFieldCharLimit()
+        textFieldMaxLenght()
     }
     
-    // MARK: - Set maximum lenght for title text
-    func titleTextFieldCharLimit() {
-        titleTextField.smartInsertDeleteType = UITextSmartInsertDeleteType.no
-        titleTextField.delegate = self
+    // MARK: - Set maximum lenght for textField
+    func textFieldMaxLenght() {
+        [titleTextField, urlTextField].forEach {
+            $0?.delegate = self
+            $0?.smartInsertDeleteType = UITextSmartInsertDeleteType.no
+        }
     }
     
     // MARK: - Setup view
@@ -97,10 +99,26 @@ class PopupVC: UIViewController {
 // MARK: -
 extension PopupVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let textFieldText = titleTextField.text,
-              let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
-        let substringToReplace = textFieldText[rangeOfTextToReplace]
-        let count = textFieldText.count - substringToReplace.count + string.count
-        return count <= 20
+        switch textField {
+        case titleTextField:
+            guard let textFieldText = titleTextField.text,
+                  let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            return count <= 20
+        case urlTextField:
+            guard let textFieldText = urlTextField.text,
+                  let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            return count <= 150
+        default:
+            return true
+        }
+//        guard let textFieldText = titleTextField.text,
+//              let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
+//        let substringToReplace = textFieldText[rangeOfTextToReplace]
+//        let count = textFieldText.count - substringToReplace.count + string.count
+//        return count <= 20
     }
 }
