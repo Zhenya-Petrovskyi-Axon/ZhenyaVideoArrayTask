@@ -23,6 +23,9 @@ class PopupVC: UIViewController {
     
     weak var delegate: PopupDelegate?
     
+    private let titleMaxLenght = 20
+    private let urlMaxLenght = 150
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -96,7 +99,7 @@ class PopupVC: UIViewController {
     }
 }
 
-// MARK: -
+// MARK: - UITextField delegate
 extension PopupVC: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         switch textField {
@@ -105,20 +108,15 @@ extension PopupVC: UITextFieldDelegate {
                   let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
             let substringToReplace = textFieldText[rangeOfTextToReplace]
             let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 20
+            return count <= titleMaxLenght
         case urlTextField:
             guard let textFieldText = urlTextField.text,
                   let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
             let substringToReplace = textFieldText[rangeOfTextToReplace]
             let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 150
+            return count <= urlMaxLenght
         default:
             return true
         }
-//        guard let textFieldText = titleTextField.text,
-//              let rangeOfTextToReplace = Range(range, in: textFieldText) else { return false }
-//        let substringToReplace = textFieldText[rangeOfTextToReplace]
-//        let count = textFieldText.count - substringToReplace.count + string.count
-//        return count <= 20
     }
 }
