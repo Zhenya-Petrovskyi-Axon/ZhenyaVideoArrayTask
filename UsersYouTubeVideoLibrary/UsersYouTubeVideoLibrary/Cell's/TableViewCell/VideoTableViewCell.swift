@@ -26,7 +26,7 @@ class VideoTableViewCell: UITableViewCell {
         viewForLabels.layer.masksToBounds = true
         viewForLabels.layer.cornerRadius = 15
         viewForLabels.layer.borderWidth = 0.3
-        viewForLabels.layer.borderColor = UIColor.systemYellow.cgColor
+        viewForLabels.layer.borderColor = UIColor.systemGray.cgColor
     }
     
     override func awakeFromNib() {

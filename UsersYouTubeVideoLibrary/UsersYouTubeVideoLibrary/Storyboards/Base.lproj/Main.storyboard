@@ -30,31 +30,41 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZy-HY-M8S">
                                                     <rect key="frame" x="6" y="6" width="402" height="68"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-wx-VEV">
-                                                            <rect key="frame" x="15" y="11.5" width="384" height="45"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-wx-VEV">
+                                                            <rect key="frame" x="15" y="11.5" width="372" height="45"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-qf-cXF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="372" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
-                                                                    <rect key="frame" x="0.0" y="35.5" width="384" height="9.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="soi-6M-yZG">
+                                                                    <rect key="frame" x="0.0" y="35.5" width="372" height="9.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="8"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="bNv-qf-cXF" firstAttribute="leading" secondItem="Mo0-wx-VEV" secondAttribute="leading" id="EqH-9P-vXn"/>
+                                                                <constraint firstAttribute="trailing" secondItem="bNv-qf-cXF" secondAttribute="trailing" id="F2X-zR-uh4"/>
+                                                                <constraint firstItem="bNv-qf-cXF" firstAttribute="leading" secondItem="Mo0-wx-VEV" secondAttribute="leading" id="Qka-PD-jsS"/>
+                                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="Mo0-wx-VEV" secondAttribute="leading" id="Seq-V8-F09"/>
+                                                                <constraint firstItem="soi-6M-yZG" firstAttribute="leading" secondItem="Mo0-wx-VEV" secondAttribute="leading" id="avn-uj-aPY"/>
+                                                                <constraint firstAttribute="trailing" secondItem="bNv-qf-cXF" secondAttribute="trailing" id="e2F-RL-u4a"/>
+                                                                <constraint firstAttribute="trailing" secondItem="soi-6M-yZG" secondAttribute="trailing" id="eDK-5g-hxt"/>
+                                                                <constraint firstAttribute="trailing" secondItem="soi-6M-yZG" secondAttribute="trailing" id="zkf-hD-zKd"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.98039215690000003" green="0.94901960780000005" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Mo0-wx-VEV" firstAttribute="centerY" secondItem="yZy-HY-M8S" secondAttribute="centerY" id="Him-C7-sPJ"/>
                                                         <constraint firstItem="Mo0-wx-VEV" firstAttribute="leading" secondItem="yZy-HY-M8S" secondAttribute="leading" constant="15" id="OV2-NC-5J4"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Mo0-wx-VEV" secondAttribute="trailing" constant="15" id="Pzn-ht-WqK"/>
                                                         <constraint firstItem="Mo0-wx-VEV" firstAttribute="top" secondItem="yZy-HY-M8S" secondAttribute="top" constant="11.5" id="Z6B-YF-lGy"/>
                                                         <constraint firstAttribute="bottom" secondItem="Mo0-wx-VEV" secondAttribute="bottom" constant="11.5" id="ZIf-IV-cC9"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Mo0-wx-VEV" secondAttribute="trailing" constant="3" id="zhG-j9-Hk2"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -98,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="815.94202898550736" y="64.955357142857139"/>
+            <point key="canvasLocation" x="826" y="65"/>
         </scene>
         <!--PopupVC-->
         <scene sceneID="qE0-2z-kCH">
