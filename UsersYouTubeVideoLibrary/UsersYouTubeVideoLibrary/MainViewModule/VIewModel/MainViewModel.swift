@@ -27,7 +27,6 @@ class MainViewModel: MainViewModelProtocol {
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
             didGetLinks()
-            sortLinks()
         }
     }
     
@@ -63,6 +62,7 @@ class MainViewModel: MainViewModelProtocol {
                 }
             case .success(let links):
                 self.arrayOfLinks = links
+                sortLinks()
             }
         }
     }
