@@ -51,9 +51,13 @@ class MainViewModel: MainViewModelProtocol {
         service.getLinks { links in
             switch links {
             case .failure(let error):
-                onError("Failed to fetch link's due to \(error.localizedDescription)")
+                switch error {
+                case .fetchingDataFailed:
+                    onError("Failed to fetch link's")
+                }
             case .success(let links):
                 self.arrayOfLinks = links
+                sortLinks()
             }
         }
     }
@@ -80,5 +84,10 @@ class MainViewModel: MainViewModelProtocol {
         let id = arrayOfLinks[indexPath.row].id
         let title = arrayOfLinks[indexPath.row].title
         return CellViewModel(CellModel(id: id, urlString: url, title: title))
+    }
+    
+    // MARK: - Sort links in alphabetical order
+    func sortLinks() {
+        arrayOfLinks.sort(by: { $0.title < $1.title })
     }
 }

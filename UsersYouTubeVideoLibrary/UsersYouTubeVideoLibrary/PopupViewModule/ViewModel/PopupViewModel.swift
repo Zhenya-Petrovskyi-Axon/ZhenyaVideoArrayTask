@@ -21,7 +21,7 @@ class PopupViewModel: PopupViewModelProtocol {
     
     private let service: LinkDataServiceProtocol!
     
-    private let regexURLCondition = "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)"
+    private let regexURLCondition = "(?:((?:https|http)://)|(?:/)).+(?:.mp3|mp4|avi)"
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
