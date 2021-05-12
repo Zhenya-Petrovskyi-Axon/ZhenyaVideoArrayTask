@@ -26,6 +26,7 @@ class MainViewModel: MainViewModelProtocol {
     
     private(set) var arrayOfLinks: [Link] = [] {
         didSet {
+            arrayOfLinks.sort(by: { $0.title < $1.title })
             didGetLinks()
         }
     }
