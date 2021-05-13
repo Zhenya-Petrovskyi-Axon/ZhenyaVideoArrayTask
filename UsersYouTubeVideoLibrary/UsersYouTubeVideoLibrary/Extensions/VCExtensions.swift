@@ -23,7 +23,9 @@ extension VideoPresenter where Self: UIViewController {
         let playerVC = AVPlayerViewController()
         let player = AVPlayer(url: urlToPlay)
         playerVC.player = player
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { [ weak playerVC ] _ in
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                                               object: nil,
+                                               queue: nil) { [ weak playerVC ] _ in
             playerVC?.player?.seek(to: CMTime.zero)
             playerVC?.player?.play()
         }
