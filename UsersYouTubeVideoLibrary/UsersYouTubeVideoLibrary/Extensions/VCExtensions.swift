@@ -8,37 +8,33 @@
 import UIKit
 import AVKit
 
-protocol Replayable {
-    func playerItemDidReachEnd(vc: AVPlayerViewController, notification: NSNotification)
+// MARK: - Main Video presenter protocol
+protocol VideoPresenter {
+    func playVideo(_ url: String)
 }
 
-extension Replayable {
-    func playerItemDidReachEnd(vc: AVPlayerViewController, notification: NSNotification) {
-        vc.player?.seek(to: CMTime.zero)
-        vc.player?.play()
-    }
-}
-
-// MARK: - Use with all UIVIewController Extensions needed
-extension UIViewController: Replayable {
+// MARK: - Playing video for UIViewcontrollers
+extension VideoPresenter where Self: UIViewController {
     func playVideo(_ url: String) {
         guard let urlToPlay = URL(string: url) else {
-            self.showAlert(text: "Url is invalid")
+            showAlert(text: "URl is not valid for the player")
             return
         }
+        let playerVC = AVPlayerViewController()
         let player = AVPlayer(url: urlToPlay)
-        let vc = AVPlayerViewController()
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(playerItemDidReachEnd),
-                                               name: .AVPlayerItemDidPlayToEndTime,
-                                               object: nil)
-        vc.player = player
-        self.present(vc, animated: true, completion: {
-            vc.player?.play()
-        })
-        
+        playerVC.player = player
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: nil, queue: nil) { [ weak playerVC ] _ in
+            playerVC?.player?.seek(to: CMTime.zero)
+            playerVC?.player?.play()
+        }
+        self.present(playerVC, animated: true) {
+            playerVC.player?.play()
+        }
     }
-    
+}
+
+// MARK: - Allert extension
+extension UIViewController {
     /// Show allert to user if error occures
     func showAlert(text: String) {
         let alert  = UIAlertController(title: "Important!", message: text, preferredStyle: .alert)

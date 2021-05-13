@@ -8,7 +8,7 @@
 import UIKit
 import AVKit
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, VideoPresenter {
     
     @IBOutlet weak var videoTableView: UITableView!
     

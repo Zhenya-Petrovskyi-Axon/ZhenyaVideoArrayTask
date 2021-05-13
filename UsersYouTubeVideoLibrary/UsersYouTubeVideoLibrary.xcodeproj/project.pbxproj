@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45395862264D1B4100FC8498 /* PlayerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45395861264D1B4100FC8498 /* PlayerClass.swift */; };
 		453F3AF2263AB1CE00648611 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F3AF1263AB1CE00648611 /* MainViewModel.swift */; };
 		453F3B00263AC74600648611 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453F3AFF263AC74600648611 /* Link.swift */; };
 		45449FA5263AA63D00F1F2A6 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45449FA4263AA63D00F1F2A6 /* VideoTableViewCell.swift */; };
@@ -28,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		45395861264D1B4100FC8498 /* PlayerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerClass.swift; sourceTree = "<group>"; };
 		453F3AF1263AB1CE00648611 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		453F3AFF263AC74600648611 /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
 		45449FA4263AA63D00F1F2A6 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 			children = (
 				45F6C7D7264521C8007640E9 /* VCExtensions.swift */,
 				456F0210264AB85800DA8199 /* StringExtension.swift */,
-				45395861264D1B4100FC8498 /* PlayerClass.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -304,7 +301,6 @@
 				45DFC6EE264287A600BF34DE /* CoreDataLinkService.swift in Sources */,
 				456F0211264AB85800DA8199 /* StringExtension.swift in Sources */,
 				45F6C7D326433607007640E9 /* PopupViewModel.swift in Sources */,
-				45395862264D1B4100FC8498 /* PlayerClass.swift in Sources */,
 				45F6C7D8264521C8007640E9 /* VCExtensions.swift in Sources */,
 				45841F8426398E48007A40D4 /* UsersYouTubeVideoLibrary.xcdatamodeld in Sources */,
 				45841F7E26398E48007A40D4 /* MainVC.swift in Sources */,
