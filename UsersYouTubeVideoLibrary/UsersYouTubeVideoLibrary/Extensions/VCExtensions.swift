@@ -8,9 +8,19 @@
 import UIKit
 import AVKit
 
+protocol Replayable {
+    func playerItemDidReachEnd(vc: AVPlayerViewController, notification: NSNotification)
+}
+
+extension Replayable {
+    func playerItemDidReachEnd(vc: AVPlayerViewController, notification: NSNotification) {
+        vc.player?.seek(to: CMTime.zero)
+        vc.player?.play()
+    }
+}
+
 // MARK: - Use with all UIVIewController Extensions needed
-extension UIViewController {
-    /// Play video from URL with UIKit
+extension UIViewController: Replayable {
     func playVideo(_ url: String) {
         guard let urlToPlay = URL(string: url) else {
             self.showAlert(text: "Url is invalid")
@@ -18,11 +28,17 @@ extension UIViewController {
         }
         let player = AVPlayer(url: urlToPlay)
         let vc = AVPlayerViewController()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerItemDidReachEnd),
+                                               name: .AVPlayerItemDidPlayToEndTime,
+                                               object: nil)
         vc.player = player
         self.present(vc, animated: true, completion: {
             vc.player?.play()
         })
+        
     }
+    
     /// Show allert to user if error occures
     func showAlert(text: String) {
         let alert  = UIAlertController(title: "Important!", message: text, preferredStyle: .alert)
