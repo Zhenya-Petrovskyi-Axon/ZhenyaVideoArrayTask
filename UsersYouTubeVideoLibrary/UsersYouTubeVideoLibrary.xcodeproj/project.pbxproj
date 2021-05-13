@@ -123,7 +123,6 @@
 				45F6C7D62645217C007640E9 /* Extensions */,
 				45DFC6EB2642877D00BF34DE /* Service */,
 				453F3AF7263AB5A500648611 /* Model */,
-				45841FA426399765007A40D4 /* Cell's */,
 				45841F9726399064007A40D4 /* MainViewModule */,
 				458EB256263B307700768093 /* PopupViewModule */,
 				45841F962639903E007A40D4 /* Storyboards */,
@@ -156,6 +155,7 @@
 		45841F9726399064007A40D4 /* MainViewModule */ = {
 			isa = PBXGroup;
 			children = (
+				45841FA426399765007A40D4 /* Cell's */,
 				453F3AF4263AB1D200648611 /* VIewModel */,
 				453F3AF5263AB1E900648611 /* ViewController */,
 			);
