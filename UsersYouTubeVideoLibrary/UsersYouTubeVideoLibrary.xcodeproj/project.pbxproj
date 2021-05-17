@@ -120,12 +120,12 @@
 		45841F7826398E48007A40D4 /* UsersYouTubeVideoLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				45841F962639903E007A40D4 /* Storyboards */,
 				45F6C7D62645217C007640E9 /* Extensions */,
 				45DFC6EB2642877D00BF34DE /* Service */,
 				453F3AF7263AB5A500648611 /* Model */,
 				45841F9726399064007A40D4 /* MainViewModule */,
 				458EB256263B307700768093 /* PopupViewModule */,
-				45841F962639903E007A40D4 /* Storyboards */,
 				45841F952639902D007A40D4 /* MainAppDelegates */,
 				45841F8526398E49007A40D4 /* Assets.xcassets */,
 				45841F8A26398E49007A40D4 /* Info.plist */,
