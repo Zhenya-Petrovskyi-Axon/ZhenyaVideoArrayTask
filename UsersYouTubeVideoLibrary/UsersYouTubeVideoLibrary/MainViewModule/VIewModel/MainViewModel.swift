@@ -10,6 +10,7 @@ import CoreData
 
 // MARK: - Main protocols
 protocol MainViewModelProtocol {
+    var arrayOfLinks: [Link] { get }
     var onError: (String) -> Void { get set }
     var linksCount: Int { get }
     var didGetLinks: () -> Void { get set }
